@@ -1,0 +1,12 @@
+[White "Ton Sijbrands"]
+[Black "Nico Verhoeven"]
+[Result "*"]
+[Event "WR Blindfold 2009"]
+[Round "round1"]
+01.32-28 {%eval "Horizon" 0: None } 19-23 {%eval "Horizon" 0: None } 
+02.28x19 {%eval "Horizon" 0: None } 14x23 {%eval "Horizon" 0: None } 
+03.33-28 {%eval "Horizon" 0: None } 23x32 {%eval "Horizon" 0: None } 
+04.37x28 {%eval "Horizon" 20: 10-14} 10-14 {%eval "Horizon" 1: 39-33} 
+05.41-37 {%eval "Horizon" 40: 14-19} 05-10 {%eval "Horizon" -20: 37-32} 
+06.37-32 {%eval "Horizon" 20: 14-19} 14-19 {%eval "Horizon" 1: 39-33} 
+ *

@@ -1,0 +1,56 @@
+
+/*
+       .   .   .   .   x       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   x       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   o   x       .   .   .   .   x       .   .   .   .   .
+     .   .   .   o   .       .   .   .   .   x       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   o   x       .   .   .   .   x
+     .   .   .   .   .       .   .   .   o   .       .   .   .   .   x  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   o   x
+     .   .   .   .   .       .   .   .   .   .       .   .   .   o   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+*/
+
+if (white_free_path == 0) {
+	     if (white(19,14) && black( 5,10,15) && empty(20,25,24,30,35)) white_locked += 4*dunne_stand[node->total_nr_of_pieces];
+	else if (white(29,24) && black(15,20,25) && empty(30,35,34,40,45)) white_locked += 4*dunne_stand[node->total_nr_of_pieces];
+	else if (white(39,34) && black(25,30,35) && empty(40,45,44,50)) white_locked += 4*dunne_stand[node->total_nr_of_pieces];
+}
+/*
+       .   .   .   .   x       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   x       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   x       .   .   .   .   x       .   .   .   .   .
+     .   .   .   .   o       .   .   .   .   x       .   .   .   .   .  
+       .   .   .   o   .       .   .   .   .   x       .   .   .   .   x
+     .   .   .   .   .       .   .   .   .   o       .   .   .   .   x  
+       .   .   .   .   .       .   .   .   o   .       .   .   .   .   x
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   o  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   o   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+*/
+
+if (white(24,20) && black(5,10,15) && !(any_black(4,3,9,2,8,13)) && empty(25,30,35,14,19)) white_locked += 700;
+else if
+   (white(34,30) && black(15,20,25) && !(any_black(5,4,10,3,9,14,2,8,13,19,1,7,13,18,23)) && empty(35,40,45,24,29)) white_locked  += 700;
+// white(44,40) is not a realistic advantage, attack on 44 may lead to a breakthrough.
+
+/*
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     x   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       x   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     x   .   .   .   .       x   .   .   .   .       .   .   .   .   .  
+       o   .   .   .   .       x   .   .   .   .       .   .   .   .   .
+     .   o   .   .   .       x   .   .   .   .       x   .   .   .   .  
+       .   .   .   .   .       o   .   .   .   .       x   .   .   .   .
+     .   .   .   .   .       .   o   .   .   .       x   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       o   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   o   .   .   .  
+*/
+
+
+if (white(21,27) && black(6,11,16) && !(any_black(1,2,7,3,8,12,4,9,13,18)) && empty(26,31,36,17,22)) white_locked += 700;
+// white(31,37) is not realistic
+// white(41,47) is something you don't want
+
+

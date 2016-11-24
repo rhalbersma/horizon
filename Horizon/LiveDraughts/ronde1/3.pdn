@@ -1,0 +1,11 @@
+[White "Ton Sijbrands"]
+[Black "Cees Strooper"]
+[Result "*"]
+[Event "WR Blindfold 2009"]
+[Round "round1"]
+01.32-28 {%eval "Horizon" 0: None } 17-22 {%eval "Horizon" 0: None } 
+02.28x17 {%eval "Horizon" 0: None } 12x21 {%eval "Horizon" 0: None } 
+03.37-32 {%eval "Horizon" 0: None } 07-12 {%eval "Horizon" 0: None } 
+04.41-37 {%eval "Horizon" 20: 21-26} 11-17 {%eval "Horizon" 20: 31-26} 
+05.32-28 {%eval "Horizon" 20: 06-11} 06-11 {%eval "Horizon" 1: 31-26} 
+ *

@@ -1,0 +1,42 @@
+// ----  white part -----
+
+
+if (white_free_path == 0) {
+	     if (all_white(w2(19,14)) && all_black(w3(5,10,15)) && all_empty(w5(20,25,24,30,35))) white_locked += 4*dunne_stand[node->total_nr_of_pieces];
+	else if (all_white(w2(29,24)) && all_black(w3(15,20,25)) && all_empty(w5(30,35,34,40,45))) white_locked += 4*dunne_stand[node->total_nr_of_pieces];
+	else if (all_white(w2(39,34)) && all_black(w3(25,30,35)) && all_empty(w4(40,45,44,50))) white_locked += 4*dunne_stand[node->total_nr_of_pieces];
+}
+
+if (all_white(w2(24,20)) && all_black(w3(5,10,15)) && !((black_man & w6(4,3,9,2,8,13))) && all_empty(w5(25,30,35,14,19))) white_locked += 700;
+else if
+   (all_white(w2(34,30)) && all_black(w3(15,20,25)) && !((black_man & w15(5,4,10,3,9,14,2,8,13,19,1,7,13,18,23))) && all_empty(w5(35,40,45,24,29))) white_locked  += 700;
+// all_white(w2(44,40)) is not a realistic advantage, attack on 44 may lead to a breakthrough.
+
+
+
+if (all_white(w2(21,27)) && all_black(w3(6,11,16)) && !((black_man & w10(1,2,7,3,8,12,4,9,13,18))) && all_empty(w5(26,31,36,17,22))) white_locked += 700;
+// all_white(w2(31,37)) is not realistic
+// all_white(w2(41,47)) is something you don't want
+
+
+// ----  black part -----
+
+
+if (black_free_path == 0) {
+	     if (all_black(w2(32,37)) && all_white(w3(46,41,36)) && all_empty(w5(31,26,27,21,16))) black_locked += 4*dunne_stand[node->total_nr_of_pieces];
+	else if (all_black(w2(22,27)) && all_white(w3(36,31,26)) && all_empty(w5(21,16,17,11,6))) black_locked += 4*dunne_stand[node->total_nr_of_pieces];
+	else if (all_black(w2(12,17)) && all_white(w3(26,21,16)) && all_empty(w4(11,6,7,1))) black_locked += 4*dunne_stand[node->total_nr_of_pieces];
+}
+
+if (all_black(w2(27,31)) && all_white(w3(46,41,36)) && !((white_man & w6(47,48,42,49,43,38))) && all_empty(w5(26,21,16,37,32))) black_locked += 700;
+else if
+   (all_black(w2(17,21)) && all_white(w3(36,31,26)) && !((white_man & w15(46,47,41,48,42,37,49,43,38,32,50,44,38,33,28))) && all_empty(w5(16,11,6,27,22))) black_locked  += 700;
+// all_black(w2(7,11)) is not a realistic advantage, attack on 44 may lead to a breakthrough.
+
+
+
+if (all_black(w2(30,24)) && all_white(w3(45,40,35)) && !((white_man & w10(50,49,44,48,43,39,47,42,38,33))) && all_empty(w5(25,20,15,34,29))) black_locked += 700;
+// all_black(w2(20,14)) is not realistic
+// all_black(w2(10,4)) is something you don't want
+
+

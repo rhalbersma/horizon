@@ -1,0 +1,96 @@
+// against the damlijn
+/*
+       x   .   x   .   .       .   x   .   x   .       .   .   x   .   x
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       x   o   x   .   .       .   x   o   x   .       .   .   x   o   x
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+*/
+
+if ((white(12) && any_black(1,11) && any_black(3,13) && empty(2,7, 8)) ||
+    (white(13) && any_black(2,12) && any_black(4,14) && empty(3,8, 9)) ||
+    (white(14) && any_black(3,13) && any_black(5,15) && empty(4,9,10)))                    white_locked += 700;
+
+/*
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     x   .   x   .   .       .   x   .   x   .       .   .   x   .   x  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     x   o   x   .   .       .   x   o   x   .       .   .   x   o   x  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+*/
+
+else if
+   ((white(17) && any_black(6,16) && any_black( 8,18) && empty(11,12,7,  1,2,3)) ||
+    (white(18) && any_black(7,17) && any_black( 9,19) && empty(12,13,8,1,2,3,4)) ||
+    (white(19) && any_black(8,18) && any_black(10,20) && empty(13,14,9,2,3,4,5)))          white_locked += 500;
+/*
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       x   .   x   .   .       .   x   .   x   .       .   .   x   .   x
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       x   o   x   .   .       .   x   o   x   .       .   .   x   o   x
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+*/
+
+
+else if
+   ((white(22) && any_black(11,21) && any_black(13,23) && empty(17,18,12,7, 8,1,2,3)) ||
+    (white(23) && any_black(12,22) && any_black(14,24) && empty(18,19,13,8, 9,2,3,4)) ||
+    (white(24) && any_black(13,23) && any_black(15,25) && empty(19,20,14,9,10,3,4,5)))      white_locked += 200;
+
+
+//against the left edge
+
+/*
+       .   .   .   .   x       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   o   x       .   .   .   .   x       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   o   x       .   .   .   .   x
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   o   x
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+*/
+
+// if ((white(14) && black( 5,15) && empty(20,25, 4,10)) is not proffitable, either there is a breakthrough, or a black_man at 3
+if (white(24) && black(15,25) && empty(30,35) && empty_or_white(14, 9, 3,10, 4, 5) && !(any_black(13,23))) white_locked += 200;
+// if ((white(34) && black(25,35) && empty(40,45,30,24,19,13,8,2,20,14, 9, 3,15,10, 4, 5)) not good, due to breakthrough risks
+
+
+// against the right edge
+/*
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     x   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     x   o   .   .   .       x   .   .   .   .       .   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       x   o   .   .   .       x   .   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       x   o   .   .   .  
+       .   .   .   .   .       .   .   .   .   .       .   .   .   .   .
+     .   .   .   .   .       .   .   .   .   .       .   .   .   .   .  
+*/
+
+
+
+//if ((white(17) && black( 6,16) && empty(21,26,11, 7, 2, 1)) is not proffitable, either there is a breakthrough, or a black_man at 8
+if   (white(27) && black(16,26) && empty(31,36) && empty_or_white(21,17,12,8,3,11, 7, 2, 6, 1) && !(any_black(14,24))) white_locked += 200;
+// with white(37) there is nearly a breakthrough
+
+

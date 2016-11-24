@@ -1,0 +1,63 @@
+Messages:
+
+Initiated by GUI:
+
+
+Init Game
+
+header:			1 byte:	'I'
+nr of moves:	3 bytes: zero fill '000' .. '999' moves
+time:			3 bytes: zero fill '000' .. '999' minutes
+
+
+
+Get Next Move
+
+header:			1 byte:	'G'
+color:			1 byte: 'W' or 'Z'
+position:		50 bytes: 'e', 'w', 'z', 'W', 'Z'
+
+
+Get Next Move from Book
+
+header:			1 byte:	'B'
+movestring:		n bytes
+
+
+Evaluate Position
+
+header:			1 byte:	'E'
+color:			1 byte: 'W' or 'Z'
+position:		50 bytes: 'e', 'w', 'z', 'W', 'Z'
+
+
+Analyse Position
+
+header:			1 byte:	'A'
+color:			1 byte: 'W' or 'Z'
+position:		50 bytes: 'e', 'w', 'z', 'W', 'Z'
+depth:			2 bytes: zero fill '00' .. '99'
+
+Analyse Move
+
+header:			1 byte:	'M'
+color:			1 byte: 'W' or 'Z'
+position:		50 bytes: 'e', 'w', 'z', 'W', 'Z'
+depth:			2 bytes: zero fill '00' .. '99'
+move:			6 (+n) bytes, start, stop, cnt, [cap]
+
+Create Move Report
+
+header:			1 byte:	'R'
+ID:				1 byte: '0' .. '9'
+
+Originating from engine:
+
+Next Move
+
+header:			1 byte:	'N'
+start:			2 bytes: zero fill 01 .. 50
+stop:			2 bytes: zero fill 01 .. 50
+cnt:			2 bytes: zero fill 00 .. 20
+[cap]:			cnt * 2 bytes: zero fill 01 .. 50
+

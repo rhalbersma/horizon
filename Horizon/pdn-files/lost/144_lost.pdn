@@ -1,0 +1,54 @@
+[White "Truus"]
+[Black "Hor_144"]
+[Result "2-0"]
+[Round "144"]
+01.34-30 18-22 
+02.30-25 12-18 {%eval "Horizon" 0} 
+03.39-34 07-12 {%eval "Horizon" 1} 
+04.31-27 22x31 {%eval "Horizon" 0} 
+05.36x27 19-23 {%eval "Horizon" 20} 
+06.35-30 14-19 {%eval "Horizon" 60} 
+07.25x14 09x20 {%eval "Horizon" 0} 
+08.30-25 19-24 {%eval "Horizon" 40} 
+09.25x14 10x19 {%eval "Horizon" 0} 
+10.44-39 05-10 {%eval "Horizon" 60} 
+11.41-36 15-20 {%eval "Horizon" 40} 
+12.50-44 01-07 {%eval "Horizon" 20} 
+13.46-41 04-09 {%eval "Horizon" 1} 
+14.36-31 10-15 {%eval "Horizon" 1} 
+15.41-36 09-14 {%eval "Horizon" -20} 
+16.34-29 23x34 {%eval "Horizon" 0} 
+17.40x29 03-09 {%eval "Horizon" -60} 
+18.44-40 18-23 {%eval "Horizon" 20} 
+19.29x18 12x23 {%eval "Horizon" 40} 
+20.49-44 07-12 {%eval "Horizon" 40} 
+21.33-28 17-21 {%eval "Horizon" 1} 
+22.39-33 13-18 {%eval "Horizon" 1} 
+23.31-26 09-13 {%eval "Horizon" 60} 
+24.26x17 11x31 {%eval "Horizon" 0} 
+25.36x27 06-11 {%eval "Horizon" 20} 
+26.43-39 11-17 {%eval "Horizon" 60} 
+27.37-31 02-07 {%eval "Horizon" 20} 
+28.31-26 17-21 {%eval "Horizon" 20} 
+29.26x17 12x21 {%eval "Horizon" 0} 
+30.42-37 21-26 {%eval "Horizon" -20} 
+31.47-42 08-12 {%eval "Horizon" -160} 
+32.37-31 26x37 {%eval "Horizon" 0} 
+33.42x31 20-25 {%eval "Horizon" -320} 
+34.31-26 14-20 {%eval "Horizon" -620} 
+35.40-35 25-30 {%eval "Horizon" -700} 
+36.44-40 20-25 {%eval "Horizon" -860} 
+37.40-34 07-11 {%eval "Horizon" -620} 
+38.48-42 11-17 {%eval "Horizon" -840} 
+39.42-37 24-29 {%eval "Horizon" -960} 
+40.33x24 16-21 {%eval "Horizon" -1000} 
+41.27x16 18-22 {%eval "Horizon" -1220} 
+42.34-29 22x31 {%eval "Horizon" 0} 
+43.29x09 31-36 {%eval "Horizon" -1440} 
+44.24x13 36-41 {%eval "Horizon" -1300} 
+45.35x24 41-46 {%eval "Horizon" -1300} 
+46.32-27 46-10 {%eval "Horizon" -1220} 
+47.27-22 17x28 {%eval "Horizon" 0} 
+48.24-19 10x23 {%eval "Horizon" 0} 
+49.39-34 23x40 {%eval "Horizon" 0} 
+50.45x34  *

@@ -1,0 +1,14 @@
+[White "Ton Sijbrands"]
+[Black "Harry van der Vossen"]
+[Result "*"]
+[Event "WR Blindfold 2009"]
+[Round "round1"]
+01.32-28 {%eval "Horizon" 0: None } 16-21 {%eval "Horizon" 0: None } 
+02.31-26 {%eval "Horizon" 0: None } 18-22 {%eval "Horizon" 0: None } 
+03.37-32 {%eval "Horizon" 0: None } 11-16 {%eval "Horizon" 0: None } 
+04.41-37 {%eval "Horizon" -80: 07-11} 07-11 {%eval "Horizon" 20: 34-29} 
+05.34-30 {%eval "Horizon" 20: 21-27} 01-07 {%eval "Horizon" -20: 30-24} 
+06.30-25 {%eval "Horizon" 60: 21-27} 21-27 {%eval "Horizon" 0: 32x21} 
+07.32x21 {%eval "Horizon" 0: 16x27} 16x27 {%eval "Horizon" -60: 46-41} 
+08.46-41 {%eval "Horizon" 60: 19-23} 13-18 {%eval "Horizon" -60: 39-34} 
+ *

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-3.9.dtd">
+<!-- Project file for project BoomstraDamPython -->
+<!-- Saved: 2008-05-04, 12:44:55 -->
+<!-- Copyright (C) 2008 Feike Boomstra, f.p.boomstra@gmail.com -->
+<Project version="3.9">
+  <ProgLanguage mixed="0">Python</ProgLanguage>
+  <UIType>Console</UIType>
+  <Description></Description>
+  <Version>0.1</Version>
+  <Author>Feike Boomstra</Author>
+  <Email>f.p.boomstra@gmail.com</Email>
+  <Sources>
+    <Source>
+      <Name>DraughtMain.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtPosition.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtBoard.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtRePlay.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSetUp.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtAnalyze.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtDisplayOnly.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtConstants.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtPlayBak.py</Name>
+    </Source>
+    <Source>
+      <Name>AskYesNo.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSocketReader.py</Name>
+    </Source>
+    <Source>
+      <Name>ComputerPlayer.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtPlay.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtRemotePlayer.py</Name>
+    </Source>
+    <Source>
+      <Name>MoveGenerator.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtPanel.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtDataStructures.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSocketInterface.py</Name>
+    </Source>
+    <Source>
+      <Name>MoveRecord.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSocketReadWrite.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtReadPDN.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtEngineInterface.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSavePDN.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtMakeGameRecords.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtReadStandFile.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtGamePanel.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtTimeSetPanel.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtEvalDisplay.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtAnalyzePanel.py</Name>
+    </Source>
+  </Sources>
+  <Forms>
+  </Forms>
+  <Translations>
+  </Translations>
+  <Interfaces>
+  </Interfaces>
+  <Others>
+  </Others>
+  <MainScript>
+    <Name>DraughtMain.py</Name>
+  </MainScript>
+  <Vcs>
+    <VcsType>None</VcsType>
+  </Vcs>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
+  </FiletypeAssociations>
+</Project>

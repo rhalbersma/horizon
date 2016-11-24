@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-3.9.dtd">
+<!-- Project file for project new gui -->
+<!-- Saved: 2008-07-21, 00:13:29 -->
+<!-- Copyright (C) 2008 F.P. Boomstra,  -->
+<Project version="3.9">
+  <ProgLanguage mixed="0">Python</ProgLanguage>
+  <UIType>Qt</UIType>
+  <Description>change structure of the game/display/notation/tag relations
+
+</Description>
+  <Version>2.1</Version>
+  <Author>F.P. Boomstra</Author>
+  <Email></Email>
+  <Sources>
+    <Source>
+      <Name>DraughtMain.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtPosition.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtBoard.py</Name>
+    </Source>
+    <Source>
+      <Name>OldReadStandFile.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtRePlay.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtEvalDisplay.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSetUp.py</Name>
+    </Source>
+    <Source>
+      <Name>ComputerPlayerCinterface.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtAnalyze.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtDisplayOnly.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtAnalyzePanel.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtConstants.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtPlayBak.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtGamePanel.py</Name>
+    </Source>
+    <Source>
+      <Name>ParsePDNfile.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtReadStandFile.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSocketReader.py</Name>
+    </Source>
+    <Source>
+      <Name>ComputerPlayer.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtPlay.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtRemotePlayer.py</Name>
+    </Source>
+    <Source>
+      <Name>MoveGenerator.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtPanel.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtDataStructures.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtMakeGameRecords.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSocketInterface.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtTimeSetPanel.py</Name>
+    </Source>
+    <Source>
+      <Name>MoveRecord.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSocketReadWrite.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtReadPDN.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtEngineInterface.py</Name>
+    </Source>
+    <Source>
+      <Name>DraughtSavePDN.py</Name>
+    </Source>
+  </Sources>
+  <Forms>
+  </Forms>
+  <Translations>
+  </Translations>
+  <Interfaces>
+  </Interfaces>
+  <Others>
+  </Others>
+  <MainScript>
+    <Name>DraughtMain.py</Name>
+  </MainScript>
+  <Vcs>
+    <VcsType>None</VcsType>
+  </Vcs>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+  </FiletypeAssociations>
+</Project>

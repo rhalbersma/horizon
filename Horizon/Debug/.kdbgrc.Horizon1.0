@@ -1,0 +1,36 @@
+[Breakpoint 0]
+Enabled=true
+File=../c-files/voorpost_procs.cpp
+Line=1766
+Temporary=false
+
+[Breakpoint 1]
+Enabled=true
+File=../c-files/voorpost_procs.cpp
+Line=1621
+Temporary=false
+
+[Breakpoint 2]
+Enabled=true
+File=../c-files/voorpost_procs.cpp
+Line=1564
+Temporary=false
+
+[Breakpoint 3]
+Enabled=true
+File=../c-files/voorpost_procs.cpp
+Line=1709
+Temporary=false
+
+[General]
+DebuggerCmdStr=
+DriverName=GDB
+FileVersion=1
+OptionsSelected=
+ProgramArgs=
+TTYLevel=7
+WorkingDirectory=
+
+[Memory]
+ColumnWidths=80,0
+NumExprs=0

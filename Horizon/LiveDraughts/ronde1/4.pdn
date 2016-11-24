@@ -1,0 +1,10 @@
+[White "Ton Sijbrands"]
+[Black "Jan van Bergen"]
+[Result "*"]
+[Event "WR Blindfold 2009"]
+[Round "round1"]
+01.35-30 {%eval "Horizon" 0: None } 20-25 {%eval "Horizon" 0: None } 
+02.40-35 {%eval "Horizon" 0: None } 17-21 {%eval "Horizon" 0: None } 
+03.31-26 {%eval "Horizon" 0: None } 11-17 {%eval "Horizon" 0: None } 
+04.30-24 {%eval "Horizon" 0: 19x30} 19x30 {%eval "Horizon" 0: 35x24} 
+05.35x24 {%eval "Horizon" -20: 21-27}  *

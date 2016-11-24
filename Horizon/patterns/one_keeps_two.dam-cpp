@@ -1,0 +1,74 @@
+// ----  white part -----
+// against the damlijn
+
+if (((white_man & w1(12)) && (black_man & w2(1,11)) && (black_man & w2(3,13)) && all_empty(w3(2,7,8))) ||
+    ((white_man & w1(13)) && (black_man & w2(2,12)) && (black_man & w2(4,14)) && all_empty(w3(3,8,9))) ||
+    ((white_man & w1(14)) && (black_man & w2(3,13)) && (black_man & w2(5,15)) && all_empty(w3(4,9,10))))                    white_locked += 700;
+
+
+else if
+   (((white_man & w1(17)) && (black_man & w2(6,16)) && (black_man & w2(8,18)) && all_empty(w6(11,12,7,1,2,3))) ||
+    ((white_man & w1(18)) && (black_man & w2(7,17)) && (black_man & w2(9,19)) && all_empty(w7(12,13,8,1,2,3,4))) ||
+    ((white_man & w1(19)) && (black_man & w2(8,18)) && (black_man & w2(10,20)) && all_empty(w7(13,14,9,2,3,4,5))))          white_locked += 500;
+
+
+else if
+   (((white_man & w1(22)) && (black_man & w2(11,21)) && (black_man & w2(13,23)) && all_empty(w8(17,18,12,7,8,1,2,3))) ||
+    ((white_man & w1(23)) && (black_man & w2(12,22)) && (black_man & w2(14,24)) && all_empty(w8(18,19,13,8,9,2,3,4))) ||
+    ((white_man & w1(24)) && (black_man & w2(13,23)) && (black_man & w2(15,25)) && all_empty(w8(19,20,14,9,10,3,4,5))))      white_locked += 200;
+
+
+//against the left edge
+
+
+// if (((white_man & w1(14)) && all_black(w2(5,15)) && all_empty(w4(20,25,4,10))) is not proffitable, either there is a breakthrough, or a black_man at 3
+if ((white_man & w1(24)) && all_black(w2(15,25)) && all_empty(w2(30,35)) && all_empty_or_white(w6(14,9,3,10,4,5)) && !((black_man & w2(13,23)))) white_locked += 200;
+// if (((white_man & w1(34)) && all_black(w2(25,35)) && all_empty(w16(40,45,30,24,19,13,8,2,20,14,9,3,15,10,4,5))) not good, due to breakthrough risks
+
+
+// against the right edge
+
+
+
+//if (((white_man & w1(17)) && all_black(w2(6,16)) && all_empty(w6(21,26,11,7,2,1))) is not proffitable, either there is a breakthrough, or a black_man at 8
+if   ((white_man & w1(27)) && all_black(w2(16,26)) && all_empty(w2(31,36)) && all_empty_or_white(w10(21,17,12,8,3,11,7,2,6,1)) && !((black_man & w2(14,24)))) white_locked += 200;
+// with (white_man & w1(37)) there is nearly a breakthrough
+
+
+// ----  black part -----
+// against the damlijn
+
+if (((black_man & w1(39)) && (white_man & w2(50,40)) && (white_man & w2(48,38)) && all_empty(w3(49,44,43))) ||
+    ((black_man & w1(38)) && (white_man & w2(49,39)) && (white_man & w2(47,37)) && all_empty(w3(48,43,42))) ||
+    ((black_man & w1(37)) && (white_man & w2(48,38)) && (white_man & w2(46,36)) && all_empty(w3(47,42,41))))                    black_locked += 700;
+
+
+else if
+   (((black_man & w1(34)) && (white_man & w2(45,35)) && (white_man & w2(43,33)) && all_empty(w6(40,39,44,50,49,48))) ||
+    ((black_man & w1(33)) && (white_man & w2(44,34)) && (white_man & w2(42,32)) && all_empty(w7(39,38,43,50,49,48,47))) ||
+    ((black_man & w1(32)) && (white_man & w2(43,33)) && (white_man & w2(41,31)) && all_empty(w7(38,37,42,49,48,47,46))))          black_locked += 500;
+
+
+else if
+   (((black_man & w1(29)) && (white_man & w2(40,30)) && (white_man & w2(38,28)) && all_empty(w8(34,33,39,44,43,50,49,48))) ||
+    ((black_man & w1(28)) && (white_man & w2(39,29)) && (white_man & w2(37,27)) && all_empty(w8(33,32,38,43,42,49,48,47))) ||
+    ((black_man & w1(27)) && (white_man & w2(38,28)) && (white_man & w2(36,26)) && all_empty(w8(32,31,37,42,41,48,47,46))))      black_locked += 200;
+
+
+//against the left edge
+
+
+// if (((black_man & w1(37)) && all_white(w2(46,36)) && all_empty(w4(31,26,47,41))) is not proffitable, either there is a breakthrough, or a white_man at 3
+if ((black_man & w1(27)) && all_white(w2(36,26)) && all_empty(w2(21,16)) && all_empty_or_black(w6(37,42,48,41,47,46)) && !((white_man & w2(38,28)))) black_locked += 200;
+// if (((black_man & w1(17)) && all_white(w2(26,16)) && all_empty(w16(11,6,21,27,32,38,43,49,31,37,42,48,36,41,47,46))) not good, due to breakthrough risks
+
+
+// against the right edge
+
+
+
+//if (((black_man & w1(34)) && all_white(w2(45,35)) && all_empty(w6(30,25,40,44,49,50))) is not proffitable, either there is a breakthrough, or a white_man at 8
+if   ((black_man & w1(24)) && all_white(w2(35,25)) && all_empty(w2(20,15)) && all_empty_or_black(w10(30,34,39,43,48,40,44,49,45,50)) && !((white_man & w2(37,27)))) black_locked += 200;
+// with (black_man & w1(14)) there is nearly a breakthrough
+
+
