@@ -10,11 +10,12 @@
 #include "damdef.v2.4.h"
 #include "damend.v2.4.h"
 #include "BoomstraDam.v2.5.h"
+#include "paths.h"
 
 ULONG *end_tabl;                /* the end game position table */
 char mm[2500], mk[2500], km[2500], kk[2500]; /* 2-piece end game tables */
 BOOL valid_2pc = FALSE;         /* 2-piece end game tables loaded */
-char enddbdir[] = "/home/feike/Endgame/Endgame/cpr/";        /* directory of end game database files */
+char enddbdir[HORIZON_PATH_MAX] = "";        /* directory of end game database files */
 int  end_maxpc = 6;             /* end game maximum nr of pieces on board */
 const int inv_pc[] = { 0, E, MB, MW, KB, KW };        /* inverted pieces */
 const long catch_bonus[] = { 0, XBONUS, 4*XBONUS, 9*XBONUS, 16*XBONUS };
@@ -28,7 +29,7 @@ const int pcorder[4] = { MW, KW, MB, KB }; /* piece order for db indexing */
 endhf ext_set[115];             /* endgame files from external list */
 
 //fb toegevoegd
-char gp_text[256];
+char gp_text[HORIZON_PATH_MAX];
 //int board[63];
 //int piece_list[2][21];
 //int piece_count[2];
@@ -399,7 +400,8 @@ void init_enddb(void)
 
 //    find_full(IDS_ENDLST);      /* load external endgame db file info */
 
-    f = fopen("/home/feike/Endgame/Endgame/cpr/DAMEND.LST", "r");
+    snprintf(gp_text, sizeof gp_text, "%sDAMEND.LST", enddbdir);
+    f = fopen(gp_text, "r");
     if (f != NULL)
     {
         for (i = 0; i < sizeof ext_set / sizeof ext_set[0]; i++)
@@ -527,7 +529,7 @@ int open_endfile(endhf *ep)
 
     if (ep->fd < 0)                     /* file not opened before */
     {
-	strcpy(gp_text, "/home/feike/Endgame/Endgame/cpr/");
+	strcpy(gp_text, enddbdir);
         strcat(gp_text, ep->name);      /* construct full path */
 	//printf("looking for: %s\n", gp_text);
         ep->fd = open(gp_text, O_RDONLY);
@@ -1973,7 +1975,8 @@ init_end(void)
         return FALSE;
     //find_full(IDS_FEND);
     //if (!load_end(file_spec))
-	if (!load_end("/home/feike/Endgame/Endgame/cpr/DAM.END"))
+	snprintf(gp_text, sizeof gp_text, "%sDAM.END", enddbdir);
+	if (!load_end(gp_text))
         clear_end();
     init_enddb();
     return TRUE;

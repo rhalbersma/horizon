@@ -20,7 +20,8 @@ SOURCES := \
 	search_tree.v2.4.cpp \
 	socket_handler.v2.4.cpp \
 	voorpost.cpp \
-	voorpost_procs.cpp
+	voorpost_procs.cpp \
+	paths.cpp
 
 OBJECTS := $(SOURCES:%.cpp=$(OBJDIR)/%.o)
 

@@ -9,6 +9,7 @@
 // try_socket.cpp : Defines the entry point for the console application.
 //
 #include "BoomstraDam.v2.5.h"
+#include "paths.h"
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -150,6 +151,7 @@ int analyse_and_dispatch()
 int main()
 {
 	 	int retry_count = 0;
+	init_paths();
 
 
 	h = gethostbyname("127.0.0.1");
