@@ -132,7 +132,7 @@ class TkSelectMixIn:
 
         for condition, mode in enumerate(ready):
             for source in mode:
-                data = source.recv(128)
+                data = source.recv(128).decode('latin-1')
                 if len(data) == 0:
                     source.close()
                     source.callback('X')    # tell them we are closed

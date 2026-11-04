@@ -85,12 +85,12 @@ class DamExchangeLevel1:
         msg = msg + '\0'
 #        if print_message:
 #          print "Send to remote: ", print_message, "=", msg
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def recv(self, socket, mask):
         print("called back")
-        msg = socket.recv(128)
+        msg = socket.recv(128).decode('latin-1')
         if not msg:
             socket.close()
             print("socket closed")
@@ -100,7 +100,7 @@ class DamExchangeLevel1:
             return msg[:-1] # strip the trailing \0
         else:
             while True:
-                msg2 = socket.recv(128)
+                msg2 = socket.recv(128).decode('latin-1')
                 if not msg2:
                     socket.close()
                     return ''

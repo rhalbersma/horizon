@@ -30,8 +30,8 @@ class LiveDraughts():
   def get_current_round_nr(self):
     pickle_file = self.local + 'vrouwen.pickle'
     try:
-      f = open(pickle_file, 'r')
-      self.save_data = load(f)
+      f = open(pickle_file, 'rb')
+      self.save_data = load(f, encoding='latin1')
       f.close()
       self.round_nr = self.save_data.cur_round
       self.index = self.save_data.cur_index
@@ -43,7 +43,7 @@ class LiveDraughts():
     pickle_file = self.local + 'vrouwen.pickle'
     self.save_data.cur_round = self.round_nr
     self.save_data.cur_index = self.index
-    f = open(pickle_file, 'w')
+    f = open(pickle_file, 'wb')
     dump(self.save_data, f)
     f.close()
     return
@@ -126,7 +126,7 @@ class LiveDraughts():
               print("adding: ", ext_ply_nr, color, start, op, stop)
               if color == 'B': # it was the white move, now black is on move
                 move = PlyRecord()
-                move.Ply_nr = (ext_ply_nr - 1)/2 + 1
+                move.Ply_nr = (ext_ply_nr - 1)//2 + 1
                 move.WhiteMove = HalfPlyRecord()
                 move.WhiteMove.Start = start
                 move.WhiteMove.op = op

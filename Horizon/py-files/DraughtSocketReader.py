@@ -29,7 +29,7 @@ class SocketReader:
     def _select(self):
         no_data = False
         try:            
-            data = self.socket.recv(1024)
+            data = self.socket.recv(1024).decode('latin-1')
         except socket.error as reason:
             code, msg = reason.args
             no_data = True

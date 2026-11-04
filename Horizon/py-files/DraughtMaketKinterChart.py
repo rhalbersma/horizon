@@ -138,7 +138,7 @@ class DraughtMaketKinterChart:
 
   def move_nr_and_color(self, half_ply_counter):
     # half_ply_counter: 0..max
-    move_nr = (half_ply_counter + 1) / 2 + 1
+    move_nr = (half_ply_counter + 1) // 2 + 1
     if half_ply_counter % 2 == 0:
       color = "black"
     else:

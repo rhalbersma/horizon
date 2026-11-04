@@ -60,8 +60,8 @@ class DraughtPlay:
         self.MiliSecondsRemaining = 1000
         self.NumberOfMovesToGo = 0
         self.RemainingEnigineTimeAvailable = self.main.TotalEngineTime
-        file = open(HORIZON_HOME + '/Horizon/Opening Books/OpeningBook.pickle', 'r')
-        self.OpeningBook = pickle.load(file)
+        file = open(HORIZON_HOME + '/Horizon/Opening Books/OpeningBook.pickle', 'rb')
+        self.OpeningBook = pickle.load(file, encoding='latin1')
         file.close()
 
         return
@@ -214,7 +214,7 @@ class DraughtPlay:
         return
 
     def remote_req_game(self):
-        ThinkingTime = self.main.TotalEngineTime/60
+        ThinkingTime = self.main.TotalEngineTime//60
         NumberOfPlies = self.main.TotalNumberOfMoves
         if self.panel.current_white_player.get()==dc.REMOTE_PLAYER:
             ColorRemotePlayer = 'W'
@@ -224,7 +224,7 @@ class DraughtPlay:
             BeginPositionID = 'A'
         else: BeginPositionID = 'B'
         if BeginPositionID == 'A':
-            self.remote.send_game_req_message(ColorRemotePlayer, self.main.TotalEngineTime/60, self.main.TotalNumberOfMoves, BeginPositionID)
+            self.remote.send_game_req_message(ColorRemotePlayer, self.main.TotalEngineTime//60, self.main.TotalNumberOfMoves, BeginPositionID)
             return
         if  game.BeginPosition.ColorOnMove == dc.WHITE_ON_MOVE:
             ColorOnMove = 'W'
@@ -1044,7 +1044,7 @@ class DraughtPlay:
       self.NumberOfMovesToGo -= 1
       # now recalculate the remaining time to display
       total_time_in_seconds = int(self.CurrentTimeToGo)
-      time_in_minutes = total_time_in_seconds / 60
+      time_in_minutes = total_time_in_seconds // 60
       time_in_seconds = total_time_in_seconds % 60
       time_string = str(time_in_minutes).zfill(2) + ":" + str(time_in_seconds).zfill(2)
       self.main.panel.time_text.set(time_string)

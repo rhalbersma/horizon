@@ -47,7 +47,7 @@ class DraughtAnalyze:
     def receive_all_moves(self, msg):
         #receive all moves (with move-value) in the given configuration
         #print "python: ", msg
-        cnt = (len(msg) - 1)/(14 + 51)
+        cnt = (len(msg) - 1)//(14 + 51)
         #print cnt, len(msg)
         #self.all_moves = []
         for j in range(0, cnt):

@@ -142,7 +142,7 @@ class Draught158Games:
     file_name = HORIZON_HOME + '/Horizon/pdn-files/158/pickle'
     save_main = self.main
     self.main = None
-    f = open(file_name, 'w')
+    f = open(file_name, 'wb')
     dump(self, f)
     f.close()
     self.main = save_main
@@ -203,8 +203,8 @@ class Play_158:
   def play_158(self):
     file_name = HORIZON_HOME + '/Horizon/pdn-files/158/pickle'
     try:
-      f = open(file_name, 'r')
-      play158 = load(f)
+      f = open(file_name, 'rb')
+      play158 = load(f, encoding='latin1')
       f.close()
       play158.main = self.main
     except:

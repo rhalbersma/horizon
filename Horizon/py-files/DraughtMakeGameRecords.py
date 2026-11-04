@@ -197,7 +197,7 @@ class DraughtMakeGameRecords:
       for k in range(0, len(self.PosList)):
         self.Dict.append((self.PosList[k], self.MoveDictList[k]))
       self.Dict = dict(self.Dict)
-      file = open(HORIZON_HOME + '/Horizon/Opening Books/PosDict.pickle', 'w')
+      file = open(HORIZON_HOME + '/Horizon/Opening Books/PosDict.pickle', 'wb')
       pickle.dump(self.Dict, file)
       file.close()
       return

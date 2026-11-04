@@ -88,7 +88,7 @@ class LiveMenuProc():
             print("adding: ", ext_ply_nr, color, start, op, stop)
             if color == 'B': # it was the white move, now black is on move
               move = PlyRecord()
-              move.Ply_nr = (ext_ply_nr - 1)/2 + 1
+              move.Ply_nr = (ext_ply_nr - 1)//2 + 1
               move.WhiteMove = HalfPlyRecord()
               move.WhiteMove.Start = start
               move.WhiteMove.op = op
