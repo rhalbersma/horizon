@@ -1,6 +1,8 @@
 CXX ?= g++
+HASH_BITS ?= 22
+
 CXXFLAGS ?= -O2
-CXXFLAGS += -pthread -MMD -MP
+CXXFLAGS += -pthread -MMD -MP -DHASH_BITS=$(HASH_BITS)
 LDFLAGS += -pthread
 
 SRCDIR := c-files
