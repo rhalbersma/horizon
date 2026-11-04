@@ -27,8 +27,11 @@
 #define HAD_TO_CAPTURE 0x800
 #define HAD_ONCE_A_WHITE_KING 0x1000
 #define HAD_ONCE_A_BLACK_KING 0x2000
-#define HASH_ARRAY_SIZE 0x4000000				/* the related array size [0..HASH_ARRAY_SIZE -1] */
-#define MASK_HASH HASH_ARRAY_SIZE - 1				/* the mask according to this size */
+#ifndef HASH_BITS
+#define HASH_BITS 22
+#endif
+#define HASH_ARRAY_SIZE (1L << HASH_BITS)
+#define MASK_HASH (HASH_ARRAY_SIZE - 1)
 #define WHITE_HASH (0x5555555555555555 & MASK_HASH) // to distinguish between white on move or black on move
 #define INFINITY  32767						/* used in the minmax routines */
 #define NR_OF_ENDGAME_PIECES 6

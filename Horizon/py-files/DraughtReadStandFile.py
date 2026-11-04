@@ -7,11 +7,10 @@
 
 
 from DraughtDataStructures import *
-import FileDialog
-from Tkinter import *
+import tkinter.filedialog
+from tkinter import *
 import os
 import copy
-import symbol
 from DraughtConstants import *
 
 dc = DraughtConstants()
@@ -122,8 +121,8 @@ class ReadStand:
     def get_stand_file(self):
         self.s             = ''                # the string with the input to analyse
         self.cp            = 0                 # current position pointer in this string
-        self.fdlg = FileDialog.LoadFileDialog(self.root, title="Choose A Stand File")
-        self.fname = self.fdlg.go(pattern="*.stand", dir_or_file='/home/feike/Horizon/Stand')
+        self.fdlg = tkinter.filedialog.LoadFileDialog(self.root, title="Choose A Stand File")
+        self.fname = self.fdlg.go(pattern="*.stand", dir_or_file=HORIZON_HOME + '/Horizon/Stand')
         self.file_open_flag = True
         try:
             self.f = open(self.fname, 'r')
@@ -153,7 +152,7 @@ class ReadStand:
                     pos = line[0:52]
                     if len(pos) >= 51:
                         MoveNr += 1
-                        if  MoveNr % 1000 == 0: print MoveNr
+                        if  MoveNr % 1000 == 0: print(MoveNr)
                         self.enter_pos(game,  pos, 0, 0, MoveNr, '0-0')
                 # is entered, make room for a new position
                 game = GameRecord(self.main, self.main.panel, self.main.panel)

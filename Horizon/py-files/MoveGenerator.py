@@ -424,8 +424,8 @@ if __name__== '__main__':
     game.CurrentPosition.WhiteKing = [46]
     game.CurrentPosition.BlackMan = [41, 10, 44]
     game.CurrentPosition.ColorOnMove = dc.WHITE_ON_MOVE
-    print game
+    print(game)
     moves = mv.valid_move(game)
     for i in moves:
-        print i
+        print(i)
 

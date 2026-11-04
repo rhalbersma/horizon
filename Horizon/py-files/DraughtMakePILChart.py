@@ -6,7 +6,7 @@
 #
 
 
-import Image, ImageDraw
+from PIL import Image, ImageDraw
 from math import *
 
 class DraughtMakeChart:
@@ -124,7 +124,7 @@ class DraughtMakeChart:
 #    self.MakeChart(raw, expected_move, file_name)
 
   def MakeChart(self, list, expected_move, black_name, file_name, white_name=None):
-    print list
+    print(list)
     self.create_canvas()
     self.set_marks(len(list))
     self.set_hor_marks()
@@ -142,7 +142,7 @@ class DraughtMakeChart:
 
   def move_nr_and_color(self, half_ply_counter):
     # half_ply_counter: 0..max
-    move_nr = (half_ply_counter + 1) / 2 + 1
+    move_nr = (half_ply_counter + 1) // 2 + 1
     if half_ply_counter % 2 == 0:
       color = "black"
     else:

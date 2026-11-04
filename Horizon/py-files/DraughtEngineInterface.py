@@ -9,7 +9,7 @@
 from DraughtConstants import *
 import socket
 import sys
-from Tkinter import *
+from tkinter import *
 from types import *
 import os
 
@@ -25,42 +25,42 @@ class EngineSocket:
         #af, socktype, proto, canonname, sa = socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC, socket.SOCK_STREAM, 0, socket.AI_PASSIVE)
         #print af, socktype, proto
         try:
-            print "make socket"
+            print("make socket")
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        except socket.error, reason:
+        except socket.error as reason:
             code, msg = reason.args
-            print msg
+            print(msg)
             self.flag =  False
             return
         try:
-            print "bind it"
+            print("bind it")
             s.bind((HOST, PORT))
-        except socket.error, reason:
+        except socket.error as reason:
             code, msg = reason.args
-            print msg
+            print(msg)
             s.close()
             self.flag =  False
             return
         try:
-            print "make it listen"
+            print("make it listen")
             s.listen(1)
-        except socket.error, reason:
+        except socket.error as reason:
             code, msg = reason.args
-            print msg
+            print(msg)
             s.close()
             self.flag =  False
             return
         try:
-            print "trying to accept"
+            print("trying to accept")
             self.conn, self.addr = s.accept()
-        except socket.error, reason:
+        except socket.error as reason:
             code, msg = reason.args
-            print msg
+            print(msg)
             s.close()
             self.flag =  False
             return
-        print 'Connected by', self.addr
+        print('Connected by', self.addr)
         s.close()
         self.flag = True
         return
@@ -71,11 +71,11 @@ class EngineSocket:
         time = str(time_in_seconds).zfill(5)
         msg = header + nr_of_moves + " " + time + '\0'
 
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_final_report(self):
-        self.conn.send("R\0")
+        self.conn.send(b"R\0")
         return
 
     def send_get_next_move(self, game,  remaining_engine_time_in_seconds = -1):
@@ -87,7 +87,7 @@ class EngineSocket:
         ply = str(game.HalfPlyPointer).zfill(3)
         secs = '%05d' % remaining_engine_time_in_seconds
         msg = header + color + pos + ply + secs + '\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_get_next_move_from_opening_book(self, game):
@@ -95,7 +95,7 @@ class EngineSocket:
         pos = game.get_move_string()
         msg = header + pos + '\0'
 
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_evaluate_position(self, game, display=True):
@@ -110,7 +110,7 @@ class EngineSocket:
         ply = str(game.HalfPlyPointer).zfill(3)
         msg = header + color + pos + ply + dis +'\0'
 
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def get_50_sq_position(self, board):
@@ -140,7 +140,7 @@ class EngineSocket:
         ply = '000'
         msg = header + color + pos + ply + dis +'\0'
 
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_evaluate_position_2(self, game, display=True):
@@ -155,7 +155,7 @@ class EngineSocket:
         ply = str(game.HalfPlyPointer).zfill(3)
         msg = header + color + pos + ply + dis +'\0'
 
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_analyse_position(self, game, depth=10):
@@ -168,7 +168,7 @@ class EngineSocket:
         ply = str(game.HalfPlyPointer).zfill(3)
         msg = header + color + pos + ply + depth + '\0'
 
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_analyse_move(self, game, move, depth=10):
@@ -182,7 +182,7 @@ class EngineSocket:
         ply = str(game.HalfPlyPointer).zfill(3)
         msg = header + color + pos + ply + depth + move_str + '\0'
 
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_analyse_timing(self, game):
@@ -192,13 +192,13 @@ class EngineSocket:
         else: color = 'Z'
         pos = game.get_50_sq_position()
         msg = header + color + pos + '\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_close_engine(self):
         header = 'Q'
         msg = header + '\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_get_fixed_depth_move(self, game, depth, value, orig_color, display=True, FirstMove=False):
@@ -217,13 +217,13 @@ class EngineSocket:
         val = str(value).zfill(6)
         ply = str(game.HalfPlyPointer).zfill(3)
         msg = header + color + pos + ply + depth + dis + val + fm + orig_color + '\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_move_now(self):
         header = 'S'
         msg = header + '\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_setup_hash(self, game , depth,  threads,  init_hash) :
@@ -237,7 +237,7 @@ class EngineSocket:
         init_hash = str(init_hash).zfill(1)
         ply = str(game.HalfPlyPointer).zfill(3)
         msg = header + color + pos + ply + depth + threads + init_hash +'\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_get_from_hash(self,  game):
@@ -247,13 +247,13 @@ class EngineSocket:
         else: color = 'Z'
         pos = game.get_50_sq_position()
         msg = header + color + pos + '\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_get_with_key(self,  hash_key):
         header = 'D'
         msg = header + hash_key + '\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_ponder(self, game,  ply = '000', max_node = True):
@@ -265,7 +265,7 @@ class EngineSocket:
         if max_node == True: max = "1"
         else:                max = "0"
         msg = header + color + pos + ply + max + '\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def send_follow_up_move(self, board, move_nr):
@@ -276,5 +276,5 @@ class EngineSocket:
         pos = self.get_50_sq_position(board)
         ply = str(move_nr).zfill(3)
         msg = header + color + pos + ply + '\0'
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return

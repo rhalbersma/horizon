@@ -7,6 +7,7 @@
 
 
 from DraughtDataStructures import *
+from DraughtConstants import HORIZON_HOME
 import pickle
 
 class DraughtMakeGameRecords:
@@ -15,8 +16,8 @@ class DraughtMakeGameRecords:
         return
 
     def MakeGameRecords(self):
-        RatingFile = '/home/feike/workspace/collected/fmjd_rating_04_2009.txt'
-        InputFile = '/home/feike/workspace/collected/partijen 2006.txt'
+        RatingFile = HORIZON_HOME + '/workspace/collected/fmjd_rating_04_2009.txt'
+        InputFile = HORIZON_HOME + '/workspace/collected/partijen 2006.txt'
 #        OutDir = '/home/feike/BoomstraDam/pdn files/game records/'
 #        GameNumber = 0;
         rating = open(RatingFile, 'r')
@@ -36,7 +37,7 @@ class DraughtMakeGameRecords:
             rating_value_list.append(rating_value)
         rating.close()
         # got the rating info per player
-        ResultRating = '/home/feike/workspace/game records.csv'
+        ResultRating = HORIZON_HOME + '/workspace/game records.csv'
         ofile = open(ResultRating, 'w')
         file = open(InputFile, 'r')
         #while 1:
@@ -63,7 +64,7 @@ class DraughtMakeGameRecords:
             #print line1[0:-2]
 
             try: FirstName = line1[line1.index(')')+2: line1.index('-') -1]
-            except: print "line1 = ", line1
+            except: print("line1 = ", line1)
             try: SecName = line1[line1.index('-') +2:-2]
             except: err=1
             #print FirstName
@@ -92,8 +93,8 @@ class DraughtMakeGameRecords:
                 cp = self.main.read.GetGame(0, game)
                 if cp == 0:
                     #self.main.read.Games.remove(game)
-                    print "Error in PDN, last char tried = ", self.main.read.lastchrpnt
-                    print self.main.read.s[self.main.read.lastchrpnt-70:self.main.read.lastchrpnt]
+                    print("Error in PDN, last char tried = ", self.main.read.lastchrpnt)
+                    print(self.main.read.s[self.main.read.lastchrpnt-70:self.main.read.lastchrpnt])
 ##                    self.main.read.debug = '*'
 ##                    game = GameRecord(self.main, self.main.panel, self.main.panel)
 ##                    self.main.read.Games.append(game)
@@ -114,16 +115,16 @@ class DraughtMakeGameRecords:
                         PDNfile.close()
                         for i in range(0, game.get_half_ply_length()):
                             pos = game.get_next_board_layout()
-                            if pos <> None: #valid move
+                            if pos != None: #valid move
                                 ofile.write(repr(GameNumber).zfill(4)  + ' ' + repr(FirstValue).rjust(4) + ' ' + \
                                                 repr(SecValue).rjust(4) + ' ' + repr(int(i/2)).rjust(2) + ' ' + \
                                                 game.Result + ' ' +\
                                                 pos + '\n')
                             else:
-                                print "invalid move??"
+                                print("invalid move??")
         file.close()
         ofile.close()
-        print "done"
+        print("done")
         return
 
 
@@ -146,14 +147,14 @@ class DraughtMakeGameRecords:
           cp = self.main.read.GetGame(0, game)
           if cp == 0:
               #self.main.read.Games.remove(game)
-              print "Error in PDN, last char tried = ", self.main.read.lastchrpnt
-              print line
+              print("Error in PDN, last char tried = ", self.main.read.lastchrpnt)
+              print(line)
               return
           else:
             self.UpdateOpening(game)
             counter += 1
             if counter % 500 == 0:
-              print counter, "openings read", len(self.PosList), "entries", self.hit, "hits", self.plies, "plies"
+              print(counter, "openings read", len(self.PosList), "entries", self.hit, "hits", self.plies, "plies")
 
       self.MakePosDict()
       return
@@ -196,7 +197,7 @@ class DraughtMakeGameRecords:
       for k in range(0, len(self.PosList)):
         self.Dict.append((self.PosList[k], self.MoveDictList[k]))
       self.Dict = dict(self.Dict)
-      file = open('/home/feike/Horizon/Opening Books/PosDict.pickle', 'w')
+      file = open(HORIZON_HOME + '/Horizon/Opening Books/PosDict.pickle', 'wb')
       pickle.dump(self.Dict, file)
       file.close()
       return

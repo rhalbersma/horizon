@@ -90,7 +90,7 @@ class DraughtMain:
         return
 
     def exit_clicked(self):
-        print "Exit clicked"
+        print("Exit clicked")
         self.play.end_proc()
         return
 
@@ -381,9 +381,9 @@ class DraughtMain:
         self.setup.setup_board()
         return
 
-    def new_game_clicked():
+    def new_game_clicked(self):
         self.Games = []
-        game = GameRecord()
+        game = GameRecord(self, self.panel, self.panel)
         self.Games.append(game)
         self.ActiveGame = game
         self.ActiveGameNumber = 0
@@ -439,7 +439,7 @@ class DraughtMain:
 
         self.TotalEngineTime = 60*self.TotalGameTime - self.TotalNumberOfMoves*self.HandlingTime
         if self.TotalEngineTime <= 0:
-            print "problem with time, too much handling??" ,self.TotalEngineTime
+            print("problem with time, too much handling??" ,self.TotalEngineTime)
         self.time_panel.root.destroy()
         return
 
@@ -460,7 +460,7 @@ class DraughtMain:
 
 
     def beep(self):
-        print "\a"
+        print("\a")
         return
 
     def program(self):

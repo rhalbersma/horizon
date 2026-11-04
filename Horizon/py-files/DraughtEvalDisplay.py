@@ -6,8 +6,8 @@
 #
 
 
-from Tkinter import *
-import tkFont
+from tkinter import *
+import tkinter.font
 from DraughtDataStructures import *
 from DraughtConstants import *
 dc = DraughtConstants()
@@ -53,7 +53,7 @@ class DraughtEval:
         self.black = EvalParameters()
         self.diff    = EvalParameters()
         #bold font
-        self.myFont = tkFont.Font(family="helvetica", weight="bold", size=10)
+        self.myFont = tkinter.font.Font(family="helvetica", weight="bold", size=10)
         # header
         Label(eval_frame, text="param",anchor=W, bd=3,relief=RIDGE, width=17,font=self.myFont).grid(column=0,row=0)
         Label(eval_frame, text="white",anchor=E, bd=3,relief=RIDGE, width=5,bg="#fff",font=self.myFont).grid(column=1,row=0)

@@ -7,6 +7,7 @@
 
 
 #include "BoomstraDam.v2.5.h"
+#include "paths.h"
 #include <malloc.h>
 #include <sys/types.h>
 #include <sys/times.h>
@@ -1095,13 +1096,13 @@ unsigned char move_is_early_quit(NodePnt node, short int level)
 
 void create_final_report()
 {	int k,j;
-	char log_file_name[100];
+	char log_file_name[HORIZON_PATH_MAX];
 	FILE* perf_file;
 	result[0]='F';result[1] = 0; result_length = 2;
 
 for (k=0; k< 1000; k++)
 {
-	j =  sprintf(log_file_name, "/home/feike/BoomstraDam/log-files/PerformanceFile.%03d.txt", k);
+	j =  snprintf(log_file_name, sizeof log_file_name, "%s/BoomstraDam/log-files/PerformanceFile.%03d.txt", horizon_home, k);
 	//printf("try %s\n", log_file_name);
 	if ((perf_file = fopen(log_file_name, "r")) == NULL) break;  // get the first non existing file
 	fclose(perf_file);

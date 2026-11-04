@@ -5,6 +5,9 @@
 #  http://www.boost.org/LICENSE_1_0.txt)
 #
 
+import os
+
+HORIZON_HOME = os.environ.get("HORIZON_HOME") or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 class DraughtConstants:
     def __init__(self):
@@ -56,7 +59,7 @@ class DraughtConstants:
                 self.HUMAN_PLAYER   : "Human player",
                 self.REMOTE_PLAYER  : "Remote player" }
 
-        if table.has_key(i):
+        if i in table:
             return table[i]
         else: return "can't convert" + str(i)
 

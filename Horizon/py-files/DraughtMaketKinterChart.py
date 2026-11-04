@@ -6,7 +6,7 @@
 #
 
 
-from Tkinter import *
+from tkinter import *
 from math import *
 import string
 
@@ -138,7 +138,7 @@ class DraughtMaketKinterChart:
 
   def move_nr_and_color(self, half_ply_counter):
     # half_ply_counter: 0..max
-    move_nr = (half_ply_counter + 1) / 2 + 1
+    move_nr = (half_ply_counter + 1) // 2 + 1
     if half_ply_counter % 2 == 0:
       color = "black"
     else:
@@ -148,7 +148,7 @@ class DraughtMaketKinterChart:
   def is_all_zero(self, list):
     for item in list:
       if item != 0.0:
-        print item
+        print(item)
         return False
     return True
 
@@ -171,7 +171,7 @@ class DraughtMaketKinterChart:
       game.HalfPlyPointer += 1
     if self.is_all_zero(white_list) == True:
       if self.is_all_zero(black_list) == True:
-        print "no eval info available"
+        print("no eval info available")
       else:
         self.MakeChart(black_list)
     else:
@@ -195,37 +195,37 @@ class DraughtMaketKinterChart:
   def get_eval_value(self, move, previous_value):
     if move.Comment[0:5] == "%eval":
       if move.Comment[7:14] == "Horizon":
-        if string.rfind(move.Comment, ":") != -1:
+        if move.Comment.rfind(":") != -1:
           try:
-            eval_value = int(move.Comment[string.rfind(move.Comment, '"')+2:string.rfind(move.Comment, ":")])
-            #print move.Comment[string.rfind(move.Comment, '"')+2:], "->", eval_value
+            eval_value = int(move.Comment[move.Comment.rfind('"')+2:move.Comment.rfind(":")])
+            #print move.Comment[move.Comment.rfind('"')+2:], "->", eval_value
             if eval_value == 0:
               eval_value = previous_value[0]
             else:
               eval_value = round(eval_value/1000.0, 1)
 
           except:
-            print "error", move.Comment, '|',
-            print move.Comment[string.rfind(move.Comment, '"')+2:string.rfind(move.Comment, ":")], string.rfind(move.Comment, '"')
+            print("error", move.Comment, '|', end=' ')
+            print(move.Comment[move.Comment.rfind('"')+2:move.Comment.rfind(":")], move.Comment.rfind('"'))
             eval_value = 0.0
         else:
           try:
-            eval_value = int(move.Comment[string.rfind(move.Comment, '"')+2:])
-            #print move.Comment[string.rfind(move.Comment, '"')+2:], "->", eval_value
+            eval_value = int(move.Comment[move.Comment.rfind('"')+2:])
+            #print move.Comment[move.Comment.rfind('"')+2:], "->", eval_value
             if eval_value == 0:
               eval_value = previous_value[0]
             else:
               eval_value = round(eval_value/1000.0, 1)
 
           except:
-            print "error", move.Comment, '|', move.Comment[string.rfind(move.Comment, '"')+2:], string.rfind(move.Comment, '"')
+            print("error", move.Comment, '|', move.Comment[move.Comment.rfind('"')+2:], move.Comment.rfind('"'))
             eval_value = 0.0
       else:
         try:
-          eval_value = float(move.Comment[string.rfind(move.Comment, '"')+2:])
-          #print move.Comment[string.rfind(move.Comment, '"')+2:], "->", eval_value
+          eval_value = float(move.Comment[move.Comment.rfind('"')+2:])
+          #print move.Comment[move.Comment.rfind('"')+2:], "->", eval_value
         except:
-          print "error", move.Comment, '|', move.Comment[string.rfind(move.Comment, '"')+2:], string.rfind(move.Comment, '"')
+          print("error", move.Comment, '|', move.Comment[move.Comment.rfind('"')+2:], move.Comment.rfind('"'))
           eval_value = 0.0
     else:
       return 0.0
@@ -240,6 +240,6 @@ raw2 = [-0.01,-0.01,-0.01,-0.01,-0.01,-0.01,-0.01,-0.02,-0.04,-0.08, -0.1, -0.1,
 if __name__ == "__main__":
   chart = DraughtMaketKinterChart(None)
   chart.MakeChart(raw, raw2)
-  print chart.toplevel.state()
+  print(chart.toplevel.state())
   root = Tk()
   root.mainloop()

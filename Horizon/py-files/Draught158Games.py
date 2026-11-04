@@ -11,7 +11,7 @@ from DraughtConstants import *
 dc = DraughtConstants()
 from DraughtDataStructures import *
 from time import *
-from Tkinter import *
+from tkinter import *
 import os
 import fnmatch
 import datetime
@@ -51,8 +51,8 @@ class Draught158Games:
 
   def _set_position(self):
     game = GameRecord(self.main, self.main.panel, self.main.panel, None)
-    game.BeginPosition.BlackMan = range(1, 21)
-    game.BeginPosition.WhiteMan = range(31, 51)
+    game.BeginPosition.BlackMan = list(range(1, 21))
+    game.BeginPosition.WhiteMan = list(range(31, 51))
     game.BeginPosition.ColorOnMove = dc.WHITE_ON_MOVE
     game.set_begin_position()
     ml = self.main.play.mg.valid_move(game)                                     # get all valid moves
@@ -131,18 +131,18 @@ class Draught158Games:
     self.main.panel.result_text.set(result_str)
     self.main.ActiveGame.Result = msg[1:4]
     # save the game
-    f = open('/home/feike/Horizon/pdn-files/158/' + file_name, 'w')
+    f = open(HORIZON_HOME + '/Horizon/pdn-files/158/' + file_name, 'w')
     f.write(self.main.save.game_to_string(self.main.ActiveGame))
     f.close()
-    print file_name, "saved"
+    print(file_name, "saved")
     # update the parameters
     if self._next_position() == False:
       return
     # and save environment
-    file_name = '/home/feike/Horizon/pdn-files/158/pickle'
+    file_name = HORIZON_HOME + '/Horizon/pdn-files/158/pickle'
     save_main = self.main
     self.main = None
-    f = open(file_name, 'w')
+    f = open(file_name, 'wb')
     dump(self, f)
     f.close()
     self.main = save_main
@@ -201,10 +201,10 @@ class Play_158:
     return
 
   def play_158(self):
-    file_name = '/home/feike/Horizon/pdn-files/158/pickle'
+    file_name = HORIZON_HOME + '/Horizon/pdn-files/158/pickle'
     try:
-      f = open(file_name, 'r')
-      play158 = load(f)
+      f = open(file_name, 'rb')
+      play158 = load(f, encoding='latin1')
       f.close()
       play158.main = self.main
     except:
@@ -218,15 +218,15 @@ class Play_158:
     return
 
   def make_lost_docs(self):
-    for file in os.listdir('/home/feike/Horizon/pdn-files/158'):
+    for file in os.listdir(HORIZON_HOME + '/Horizon/pdn-files/158'):
       if fnmatch.fnmatch(file, '*lost.pdn'):
-        long_file_name = '/home/feike/Horizon/pdn-files/158/' + file
+        long_file_name = HORIZON_HOME + '/Horizon/pdn-files/158/' + file
         self.main.read.get_pdn_file(True, long_file_name)
-        export_file_name = '/home/feike/workspace/lost_' + str(datetime.date.today()) + '_' + self.main.ActiveGame.Round + '.doc'
+        export_file_name = HORIZON_HOME + '/workspace/lost_' + str(datetime.date.today()) + '_' + self.main.ActiveGame.Round + '.doc'
         self.main.save.save_doc_file(export_file_name)
         # and copy the pdn file:
         f = open(long_file_name, 'r')
-        g = open('/home/feike/Horizon/pdn-files/lost/lost_' + str(datetime.date.today()) + '_' + self.main.ActiveGame.Round + '.pdn', 'w')
+        g = open(HORIZON_HOME + '/Horizon/pdn-files/lost/lost_' + str(datetime.date.today()) + '_' + self.main.ActiveGame.Round + '.pdn', 'w')
         for line in f:
           g.write(line)
         f.close()

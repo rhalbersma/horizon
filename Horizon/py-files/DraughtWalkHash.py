@@ -171,7 +171,7 @@ class DraughtWalkHash:
 
 
     def walk_hash_script(self):
-        self.main.read.get_pdn_file(True,  '/home/feike/BoomstraDam/pdn files/aaa.pdn') #open the test pdn file
+        self.main.read.get_pdn_file(True,  HORIZON_HOME + '/BoomstraDam/pdn files/aaa.pdn') #open the test pdn file
         game = self.main.ActiveGame
         game.HalfPlyPointer = game.half_ply_length() #end of file
         game.build_till_pointer()
@@ -210,7 +210,7 @@ class DraughtWalkHash:
 # best move index (2)
 
     def receive_hash_node(self, msg):
-        if msg[1] <> 'x':
+        if msg[1] != 'x':
             new_hash_node,  next_start = self.get_hash_node(msg,  0)
             self.Positions.append(new_hash_node)
             self.show_pos(-1,  self.Positions,  self.panel)

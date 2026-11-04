@@ -35,7 +35,7 @@ class DraughtSetUp:
       elif piece == "empty (black)":
         return "white man"
       else:
-        print "incorrect piece found"
+        print("incorrect piece found")
         return "white man"
 
     def get_piece_on_field(self, game, i):
@@ -58,14 +58,14 @@ class DraughtSetUp:
 
     def set_begin_position_on_board(self, game):
         # make all lists empty
-        game.CurrentPosition.WhiteMan = range(31, 51)
+        game.CurrentPosition.WhiteMan = list(range(31, 51))
         game.CurrentPosition.WhiteKing = []
-        game.CurrentPosition.BlackMan = range(1, 21)
+        game.CurrentPosition.BlackMan = list(range(1, 21))
         game.CurrentPosition.BlackKing = []
         game.CurrentPosition.selected = []
-        game.BeginPosition.WhiteMan = range(31, 51)
+        game.BeginPosition.WhiteMan = list(range(31, 51))
         game.BeginPosition.WhiteKing = []
-        game.BeginPosition.BlackMan = range(1, 21)
+        game.BeginPosition.BlackMan = list(range(1, 21))
         game.BeginPosition.BlackKing = []
 
         self.panel.current_color_on_move.set(dc.WHITE_ON_MOVE)
@@ -229,22 +229,22 @@ class DraughtSetUp:
         else:
             self.panel.current_color_on_move.set(dc.BLACK_ON_MOVE            )
         i = 3                       # skip the move - part
-        while s[i] <> '(':
+        while s[i] != '(':
             self.panel.set_white_man(ord(s[i]) - ord('('), bool(False))
             self.bord.WhiteMan.append(ord(s[i]) - ord('('))
             i = i + 1
         i = i + 1
-        while s[i] <> '(':
+        while s[i] != '(':
             self.panel.set_white_king(ord(s[i]) - ord('('), bool(False))
             self.bord.WhiteKing.append(ord(s[i]) - ord('('))
             i = i + 1
         i = i + 1
-        while s[i] <> '(':
+        while s[i] != '(':
             self.panel.set_black_man(ord(s[i]) - ord('('), bool(False))
             self.bord.BlackMan.append(ord(s[i]) - ord('('))
             i = i + 1
         i = i + 1
-        while s[i] <> '(':
+        while s[i] != '(':
             self.panel.set_black_king(ord(s[i]) - ord('('), bool(False))
             self.bord.BlackKing.append(ord(s[i]) - ord('('))
             i = i + 1
@@ -253,7 +253,7 @@ class DraughtSetUp:
     def file_open_clicked(self):
         self.fdlg = FileDialog.LoadFileDialog(self.root, title="Choose A BRD File")
         self.fname = self.fdlg.go(pattern="*.brd", dir_or_file=os.curdir + '\\brd files') # opt args: dir_or_file=os.curdir, pattern="*", default="", key=None)
-        print self.fname
+        print(self.fname)
         self.chr_pnt=0
         self.entire_file=None
         self.file_open_flag = True
@@ -273,7 +273,7 @@ class DraughtSetUp:
         try:
             self.parse.f.close()
         except:
-            print "Can't close pdn file"
+            print("Can't close pdn file")
         if ok == True:
             self.set_begin_position_on_board()
             self.bord.game_pnt = 0      # set to the first game
@@ -291,17 +291,17 @@ class DraughtSetUp:
         try:
             self.f=open(self.file_name, 'w')
         except:
-            print "File not created"
+            print("File not created")
         self.entire_file = self.build_interface_string(self.bord)
         # print self.entire_file
         try:
             self.f.write(self.entire_file)
         except:
-            print "File not written"
+            print("File not written")
         try:
             self.f.close()
         except:
-            print "File not closed"
+            print("File not closed")
         return
 
     def set_left_mouse_piece(self, field_nr, game):
@@ -329,7 +329,7 @@ class DraughtSetUp:
 
       if self.piece_is_equal_to_field(piece, field) == True:
         piece = self.next_piece(piece)
-      if field <> "empty" or piece == "empty (white)" or piece == "empty (black)":
+      if field != "empty" or piece == "empty (white)" or piece == "empty (black)":
         if field_nr in game.CurrentPosition.WhiteKing: game.CurrentPosition.WhiteKing.remove(field_nr)
         if field_nr in game.BeginPosition.WhiteKing:   game.BeginPosition.WhiteKing.remove(field_nr)
         if field_nr in game.CurrentPosition.BlackKing: game.CurrentPosition.BlackKing.remove(field_nr)

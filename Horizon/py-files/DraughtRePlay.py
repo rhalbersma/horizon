@@ -7,7 +7,7 @@
 
 
 from DraughtConstants import *
-from Tkinter import *
+from tkinter import *
 from DraughtDisplayOnly import *
 #import debug
 
@@ -187,7 +187,7 @@ class DraughtRePlay:
     def decompose_tag(self,tag):
 
         if len(tag) < 7:
-            print "Invalid tag: ", tag
+            print("Invalid tag: ", tag)
             return ([], [])
 
         game_nr = int(tag[0:3])
@@ -216,7 +216,7 @@ class DraughtRePlay:
 
     def click(self, tag):
         self.display_till_tag(tag)
-        if self.main.ActiveTag <> '':
+        if self.main.ActiveTag != '':
             self.main.panel.notation.tag_config(self.main.ActiveTag, background = "#e8e8e8")
         self.main.panel.notation.tag_config(tag, background = "yellow")
         #print self.line_nr(self.main.panel.notation.tag_ranges(tag)[0])
@@ -228,7 +228,7 @@ class DraughtRePlay:
     def display_till_tag(self, tag):
         level = 0
         if len(tag) < 7:
-            print "Invalid tag: ", tag
+            print("Invalid tag: ", tag)
             return
         #else:
         #  print tag
@@ -250,9 +250,9 @@ class DraughtRePlay:
             game = game.get_half_ply_pointer_record().Variant
             if len(self.main.CurrentDisplayGame) == level:
                  self.main.CurrentDisplayGame.append(game)
-            elif self.main.CurrentDisplayGame[level] <> game:
+            elif self.main.CurrentDisplayGame[level] != game:
                 del_game = self.main.CurrentDisplayGame[level]
-                if del_game.ActivePanel <> '':
+                if del_game.ActivePanel != '':
                     del_game.ActivePanel.top.destroy()
                     del_game.ActivePanel = ''
                 self.main.CurrentDisplayGame[level] = game
@@ -282,7 +282,7 @@ class DraughtRePlay:
         prev_tag = self.current_tag(self.main.CurrentDisplayGame[level-1])
         for k in range(level, len(self.main.CurrentDisplayGame)):
             old_variant = self.main.CurrentDisplayGame.pop()
-            if old_variant.ActivePanel <> '':
+            if old_variant.ActivePanel != '':
                 self.main.NewPanelGeometry[k] = old_variant.ActivePanel.top.geometry()
                 old_variant.ActivePanel.top.destroy()
                 old_variant.ActivePanel = ''

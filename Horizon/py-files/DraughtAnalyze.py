@@ -47,7 +47,7 @@ class DraughtAnalyze:
     def receive_all_moves(self, msg):
         #receive all moves (with move-value) in the given configuration
         #print "python: ", msg
-        cnt = (len(msg) - 1)/(14 + 51)
+        cnt = (len(msg) - 1)//(14 + 51)
         #print cnt, len(msg)
         #self.all_moves = []
         for j in range(0, cnt):
@@ -269,9 +269,9 @@ class DraughtAnalyze:
 
       #self.main.play.beam_up_chart('/home/feike/Horizon/LiveDraughts/wait.png')
       game.HalfPlyPointer += 1 # has to point to the next move
-      print "start analysing with half ply =", game.HalfPlyPointer
+      print("start analysing with half ply =", game.HalfPlyPointer)
       if game.build_till_pointer()== False:
-        print "build till pointer is False"
+        print("build till pointer is False")
         if game.file_name_pdn:
           self.main.save.file_save_game_clicked(game.file_name_pdn)
         if game.file_name_chart:

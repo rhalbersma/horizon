@@ -7,11 +7,10 @@
 
 
 from DraughtDataStructures import *
-import FileDialog
-from Tkinter import *
+import tkinter.filedialog
+from tkinter import *
 import os
 import copy
-import symbol
 from DraughtConstants import *
 
 dc = DraughtConstants()
@@ -35,7 +34,7 @@ class ReadPDN:
         return
 
 
-    def get_pdn_file(self, test,  filename = '/home/feike/BoomstraDam/pdn files/thijssen.pdn' ):
+    def get_pdn_file(self, test,  filename = HORIZON_HOME + '/BoomstraDam/pdn files/thijssen.pdn' ):
         self.s             = ''                # the string with the input to analyse
         self.cp            = 0                 # current position pointer in this string
         self.current_color = dc.WHITE_ON_MOVE  # used to analyse begin position
@@ -47,8 +46,8 @@ class ReadPDN:
         if test == True:
             self.fname = filename
         else:
-            self.fdlg = FileDialog.LoadFileDialog(self.root, title="Choose A PDN File")
-            self.fname = self.fdlg.go(pattern="*.pdn", dir_or_file='/home/feike/Horizon/pdn-files') # opt args: dir_or_file=os.curdir, pattern="*", default="", key=None)
+            self.fdlg = tkinter.filedialog.LoadFileDialog(self.root, title="Choose A PDN File")
+            self.fname = self.fdlg.go(pattern="*.pdn", dir_or_file=HORIZON_HOME + '/Horizon/pdn-files') # opt args: dir_or_file=os.curdir, pattern="*", default="", key=None)
 
         self.file_open_flag = True
         try:
@@ -70,7 +69,7 @@ class ReadPDN:
 
             self.main.ActiveGameNumber = 0
 
-            if self.main.ActiveGame <> None:
+            if self.main.ActiveGame != None:
                 self.main.ActiveGame.refresh_display()
                 self.main.ActiveGame.write_moves()
                 self.main.panel.current_color_on_move.set(self.main.ActiveGame.BeginPosition.ColorOnMove)
@@ -91,8 +90,8 @@ class ReadPDN:
         if filename:
             self.fname = filename
         else:
-            self.fdlg = FileDialog.LoadFileDialog(self.root, title="Choose A PDN File")
-            self.fname = self.fdlg.go(pattern="*.pdn", dir_or_file='/home/feike/Horizon/pdn-files')
+            self.fdlg = tkinter.filedialog.LoadFileDialog(self.root, title="Choose A PDN File")
+            self.fname = self.fdlg.go(pattern="*.pdn", dir_or_file=HORIZON_HOME + '/Horizon/pdn-files')
 
         self.file_open_flag = True
         try:
@@ -108,8 +107,8 @@ class ReadPDN:
         game = GameRecord(self.main, self.main.panel, self.main.panel)
         cp = self.GetGame(0, game)
         if cp == 0:
-            print "Error in PDN, last char tried = ", self.lastchrpnt
-            print self.s[cp-10:cp], self.s[self.lastchrpnt-70:self.lastchrpnt]
+            print("Error in PDN, last char tried = ", self.lastchrpnt)
+            print(self.s[cp-10:cp], self.s[self.lastchrpnt-70:self.lastchrpnt])
             return None
         else:
 #          print "got pdn from file:", filename
@@ -125,8 +124,8 @@ class ReadPDN:
         cp = self.GetGame(0, game)
         if cp == 0:
             self.Games.remove(game)
-            print "Error in PDN, last char tried = ", self.lastchrpnt
-            print self.s[cp-10:cp], self.s[self.lastchrpnt-70:self.lastchrpnt]
+            print("Error in PDN, last char tried = ", self.lastchrpnt)
+            print(self.s[cp-10:cp], self.s[self.lastchrpnt-70:self.lastchrpnt])
             return None
 
         while True:
@@ -138,15 +137,15 @@ class ReadPDN:
                 self.Games.remove(game)
                 break
         cp = self.SkipWhiteSpace(prev_cp)
-        print "At the end: cp = ", cp, "chr = ", ord(self.s[cp])
+        print("At the end: cp = ", cp, "chr = ", ord(self.s[cp]))
         # print self.Games[0]
 
         if self.s[cp] == '\0':      # reached eof??
-            print "reached eof"
+            print("reached eof")
             return self.Games
         else:
-            print "Error in PDN, last char tried = ", self.lastchrpnt
-            print self.s[cp-10:cp], self.s[self.lastchrpnt-70:self.lastchrpnt]
+            print("Error in PDN, last char tried = ", self.lastchrpnt)
+            print(self.s[cp-10:cp], self.s[self.lastchrpnt-70:self.lastchrpnt])
             return None
 
 
@@ -173,9 +172,9 @@ class ReadPDN:
 
 
     def InsertDefaultbeginPosition(self, game):
-        game.BeginPosition.BlackMan = range( 1, 21)
-        game.BeginPosition.Empty    = range(21, 31)
-        game.BeginPosition.WhiteMan = range(31, 51)
+        game.BeginPosition.BlackMan = list(range( 1, 21))
+        game.BeginPosition.Empty    = list(range(21, 31))
+        game.BeginPosition.WhiteMan = list(range(31, 51))
         game.BeginPosition.ColorOnMove = dc.WHITE_ON_MOVE
         return
 
@@ -223,15 +222,15 @@ class ReadPDN:
             temp = self.GetBeginPosition(text_start, game)
             if temp == 0: return 0
         else:
-            print "Found Keyword: ", word
+            print("Found Keyword: ", word)
             return 0
-        if self.debug: print "SimpleKeywordLine found"
+        if self.debug: print("SimpleKeywordLine found")
         return cp
 
     def GetBeginPosition(self, start, game):
         cp = self.LogProgress("Get Begin Position", start)
 
-        game.BeginPosition.Empty = range(1, 51) # preset
+        game.BeginPosition.Empty = list(range(1, 51)) # preset
         game.BeginPosition.WhiteMan = []
         game.BeginPosition.WhiteKing = []
         game.BeginPosition.BlackMan = []
@@ -240,7 +239,7 @@ class ReadPDN:
         cp = self.GetColor(cp) # color of the turn
         if cp == 0: return 0
         game.BeginPosition.ColorOnMove = self.current_color
-        if self.debug: print dc.DCtoString(self.current_color)
+        if self.debug: print(dc.DCtoString(self.current_color))
         cp = self.GetColon(cp)
         if cp == 0: return 0
         cp = self.GetColor(cp)  # color to enter
@@ -524,7 +523,7 @@ class ReadPDN:
         return cp
 
     def GetGameBody(self, start, game):
-        if self.debug: print "GetGameBody:", dc.DCtoString(game.BeginPosition.ColorOnMove)
+        if self.debug: print("GetGameBody:", dc.DCtoString(game.BeginPosition.ColorOnMove))
         if game.BeginPosition.ColorOnMove == dc.WHITE_ON_MOVE:
             cp = self.GetWhiteStartGameBody(start, game)
             if cp==0: return 0
@@ -684,7 +683,7 @@ class ReadPDN:
         cp = self.SkipWhiteSpace(cp)
         prev_cp = cp
         cp = self.GetMoveMoveOperator(cp)
-        if cp <> 0:     # it is a move
+        if cp != 0:     # it is a move
             cp = self.SkipWhiteSpace(cp)
             cp = self.GetDigits(cp)
             if cp == 0: return 0
@@ -789,7 +788,7 @@ class ReadPDN:
 
     def LogProgress(self, name, start):
         if self.debug:
-            print name, "cp = ", start, "ts[..] = ", self.s[start:min(start+5, len(self.s))]
+            print(name, "cp = ", start, "ts[..] = ", self.s[start:min(start+5, len(self.s))])
         return start
 
 
@@ -802,7 +801,7 @@ if __name__=='__main__':
 
     test.get_pdn_file(False)
     test_games = test.GetGames()
-    for game in test_games: print game
+    for game in test_games: print(game)
 
     test.f.close()
 #    print test.bord.Games[0].Moves[0]

@@ -9,7 +9,7 @@
 from DraughtConstants import *
 from socket import *
 import sys
-from Tkinter import *
+from tkinter import *
 from types import *
 from DraughtSocketInterface import *
 
@@ -27,80 +27,80 @@ class DamExchangeLevel1:
             for res in socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC, socket.SOCK_STREAM, 0, socket.AI_PASSIVE):
                 af, socktype, proto, canonname, sa = res
                 try:
-                    print "make socket"
+                    print("make socket")
                     s = socket.socket(af, socktype, proto)
-                except socket.error, msg:
-                    print msg
+                except socket.error as msg:
+                    print(msg)
                     s = None
                     continue
                 try:
-                    print "bind it"
+                    print("bind it")
                     s.bind(sa)
-                except socket.error, msg:
-                    print msg
+                except socket.error as msg:
+                    print(msg)
                     s.close()
                     s = None
                     continue
                 try:
-                    print "make it listen"
+                    print("make it listen")
                     s.listen(1)
-                except socket.error, msg:
-                    print msg
+                except socket.error as msg:
+                    print(msg)
                     s.close()
                     s = None
                     continue
                 break
             if s is None:
-                print 'could not open socket'
+                print('could not open socket')
                 return
-            print "wait for other site"
+            print("wait for other site")
             self.conn, self.addr = s.accept()
-            print 'Connected by', self.addr
+            print('Connected by', self.addr)
         else: #server is False
             s = None
-            print "making socket"
+            print("making socket")
             try:
                 s = socket.socket(AF_INET, SOCK_STREAM)
-            except socket.error, msg:
-                print "Remote player -- could not make socket"
+            except socket.error as msg:
+                print("Remote player -- could not make socket")
                 s = None
-            print "trying to make a connection"
+            print("trying to make a connection")
             try:
                 s.connect((HOST, PORT))
-            except socket.error, msg:
-                print "Remote player -- could not connect to socket"
+            except socket.error as msg:
+                print("Remote player -- could not connect to socket")
                 s.close()
                 s = None
             if s is None:
-                print 'could not open socket'
+                print('could not open socket')
                 return
-            print "connected"
+            print("connected")
             self.conn = s
         return
 
     def send(self, msg, print_message = None):
         if len(msg) > 127:
-            print "message too long, truncated"
+            print("message too long, truncated")
             msg = msg[:128]
         msg = msg + '\0'
 #        if print_message:
 #          print "Send to remote: ", print_message, "=", msg
-        self.conn.send(msg)
+        self.conn.send(msg.encode('latin-1'))
         return
 
     def recv(self, socket, mask):
-        print "called back"
-        msg = socket.recv(128)
+        print("called back")
+        msg = socket.recv(128).decode('latin-1')
         if not msg:
             socket.close()
-            print "socket closed"
+            print("socket closed")
             return
         if msg[-1] == '\0':
             # we have collected all info
             return msg[:-1] # strip the trailing \0
         else:
             while True:
-                msg2 = socket.recv(128)
+                msg2 = socket.recv(128).decode('latin-1')
                 if not msg2:
                     socket.close()
                     return ''
@@ -129,32 +129,32 @@ class DamExchange:
         header  = 'R'
         version = '01'
         program = 'Horizon                         '
-        if len(program) <> 32:
-            print "He Feike, fout geteld"
+        if len(program) != 32:
+            print("He Feike, fout geteld")
             return
 
         color   = ColorRemotePlayer
-        if (color <> 'W') and (color <> 'Z'):
-            print "Invalid color_remote_player in send_game_req_message"
+        if (color != 'W') and (color != 'Z'):
+            print("Invalid color_remote_player in send_game_req_message")
             return False
         if (ThinkingTime > 999) or (ThinkingTime <= 0):
-            print "Invalid thinkingtime in send_game_req_message"
+            print("Invalid thinkingtime in send_game_req_message")
             return False
         think = str(ThinkingTime).zfill(3)
         if (NumberOfPlies > 999) or (NumberOfPlies <= 0):
-            print "Invalid NumberOfPlies in send_game_req_message"
+            print("Invalid NumberOfPlies in send_game_req_message")
             return False
         plies = str(NumberOfPlies).zfill(3)
-        if (BeginPositionID <> 'A') and (BeginPositionID <> 'B'):
-            print "Invalid BeginPosition in send_game_req_message"
+        if (BeginPositionID != 'A') and (BeginPositionID != 'B'):
+            print("Invalid BeginPosition in send_game_req_message")
             return False
         begID = BeginPositionID
         color2   = ColorOnMove
-        if (color2 <> 'W') and (color2 <> 'Z'):
-            print "Invalid color_on_move in send_game_req_message"
+        if (color2 != 'W') and (color2 != 'Z'):
+            print("Invalid color_on_move in send_game_req_message")
             return False
-        if len(BeginPosition) <> 50:
-            print "Incorrect Beginposition length in send_game_req_message"
+        if len(BeginPosition) != 50:
+            print("Incorrect Beginposition length in send_game_req_message")
             return False
         begin = BeginPosition
 

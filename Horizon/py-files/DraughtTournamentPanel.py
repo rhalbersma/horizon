@@ -8,8 +8,8 @@
 
 """User Interface for International Draught Board"""
 
-from Tkinter import *
-import tkFont
+from tkinter import *
+import tkinter.font
 from DraughtConstants import *
 dc =DraughtConstants()         # get the global constants
 
@@ -52,7 +52,7 @@ class DraughtPanel:
         self.Event = StringVar()
         self.result_text = StringVar()
         self.time_text = StringVar()
-        self.myFont = tkFont.Font(family="bitstream vera sans", weight="bold", size=9)
+        self.myFont = tkinter.font.Font(family="bitstream vera sans", weight="bold", size=9)
         # frames
 #        self.frame_overall_frame          = Frame(self.root, relief = GROOVE, bd =4)
         self.row2_frame             = Frame(self.root)
@@ -86,23 +86,23 @@ class DraughtPanel:
 
 
         # define the draught board itself
-        self.empty_field          = PhotoImage(file="/home/feike/Horizon/images/ds72.gif")
-        self.empty_field_selected = PhotoImage(file="/home/feike/Horizon/images/fds72.gif")
-        self.empty_field_proposed = PhotoImage(file="/home/feike/Horizon/images/bds72.gif")
-        self.white_man            = PhotoImage(file="/home/feike/Horizon/images/ws72.gif")
-        self.white_man_selected   = PhotoImage(file="/home/feike/Horizon/images/fws72.gif")
-        self.white_man_proposed   = PhotoImage(file="/home/feike/Horizon/images/bws72.gif")
-        self.white_king           = PhotoImage(file="/home/feike/Horizon/images/wd72.gif")
-        self.white_king_selected  = PhotoImage(file="/home/feike/Horizon/images/fwd72.gif")
-        self.white_king_proposed  = PhotoImage(file="/home/feike/Horizon/images/bwd72.gif")
-        self.black_man            = PhotoImage(file="/home/feike/Horizon/images/zs72.gif")
-        self.black_man_selected   = PhotoImage(file="/home/feike/Horizon/images/fzs72.gif")
-        self.black_man_proposed   = PhotoImage(file="/home/feike/Horizon/images/bzs72.gif")
-        self.black_king           = PhotoImage(file="/home/feike/Horizon/images/zd72.gif")
-        self.black_king_selected  = PhotoImage(file="/home/feike/Horizon/images/fzd72.gif")
-        self.black_king_proposed  = PhotoImage(file="/home/feike/Horizon/images/bzd72.gif")
-        self.yellow_lit           = PhotoImage(file="/home/feike/Horizon/images/yellow lit.gif")
-        self.grey_lit             = PhotoImage(file="/home/feike/Horizon/images/grey lit.gif")
+        self.empty_field          = PhotoImage(file=HORIZON_HOME + "/Horizon/images/ds72.gif")
+        self.empty_field_selected = PhotoImage(file=HORIZON_HOME + "/Horizon/images/fds72.gif")
+        self.empty_field_proposed = PhotoImage(file=HORIZON_HOME + "/Horizon/images/bds72.gif")
+        self.white_man            = PhotoImage(file=HORIZON_HOME + "/Horizon/images/ws72.gif")
+        self.white_man_selected   = PhotoImage(file=HORIZON_HOME + "/Horizon/images/fws72.gif")
+        self.white_man_proposed   = PhotoImage(file=HORIZON_HOME + "/Horizon/images/bws72.gif")
+        self.white_king           = PhotoImage(file=HORIZON_HOME + "/Horizon/images/wd72.gif")
+        self.white_king_selected  = PhotoImage(file=HORIZON_HOME + "/Horizon/images/fwd72.gif")
+        self.white_king_proposed  = PhotoImage(file=HORIZON_HOME + "/Horizon/images/bwd72.gif")
+        self.black_man            = PhotoImage(file=HORIZON_HOME + "/Horizon/images/zs72.gif")
+        self.black_man_selected   = PhotoImage(file=HORIZON_HOME + "/Horizon/images/fzs72.gif")
+        self.black_man_proposed   = PhotoImage(file=HORIZON_HOME + "/Horizon/images/bzs72.gif")
+        self.black_king           = PhotoImage(file=HORIZON_HOME + "/Horizon/images/zd72.gif")
+        self.black_king_selected  = PhotoImage(file=HORIZON_HOME + "/Horizon/images/fzd72.gif")
+        self.black_king_proposed  = PhotoImage(file=HORIZON_HOME + "/Horizon/images/bzd72.gif")
+        self.yellow_lit           = PhotoImage(file=HORIZON_HOME + "/Horizon/images/yellow lit.gif")
+        self.grey_lit             = PhotoImage(file=HORIZON_HOME + "/Horizon/images/grey lit.gif")
 
         self.board_frame.columnconfigure(0,minsize=0, pad=0)
         self.board_frame.columnconfigure(1,minsize=0, pad=0)
@@ -435,7 +435,8 @@ class DraughtPanel:
         return
 
     def stop_engine(self):
-        self.main.play.engine.send_close_engine()
+        if self.main.EngineStarted == True:
+            self.main.play.engine.send_close_engine()
         return
 
 
@@ -577,7 +578,7 @@ class DraughtPanel:
     def get_analyse_depth(self):
         items = self.depth_list_box.curselection()
         try:
-            items = map(int, items)
+            items = list(map(int, items))
         except ValueError: pass
         return (2* items[0]) +2
 

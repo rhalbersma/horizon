@@ -6,8 +6,8 @@
 #
 
 
-from Tkinter import *
-import tkFont
+from tkinter import *
+import tkinter.font
 from DraughtDataStructures import *
 from DraughtConstants import *
 dc = DraughtConstants()
@@ -34,16 +34,16 @@ class DraughtBoardView:
         self.board_frame.grid(row=0,column=1)
         self.entire_board_frame.rowconfigure(0, weight=100)
         # define the draught board itself
-        self.dv=PhotoImage(file="/home/feike/BoomstraDam/images/ds.gif")
-        self.ws=PhotoImage(file="/home/feike/BoomstraDam/images/ws.gif")
-        self.wd=PhotoImage(file="/home/feike/BoomstraDam/images/wd.gif")
-        self.zs=PhotoImage(file="/home/feike/BoomstraDam/images/zs.gif")
-        self.zd=PhotoImage(file="/home/feike/BoomstraDam/images/zd.gif")
-        self.fdv=PhotoImage(file="/home/feike/BoomstraDam/images/fds.gif")
-        self.fws=PhotoImage(file="/home/feike/BoomstraDam/images/fws.gif")
-        self.fwd=PhotoImage(file="/home/feike/BoomstraDam/images/fwd.gif")
-        self.fzs=PhotoImage(file="/home/feike/BoomstraDam/images/fzs.gif")
-        self.fzd=PhotoImage(file="/home/feike/BoomstraDam/images/fzd.gif")
+        self.dv=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/ds.gif")
+        self.ws=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/ws.gif")
+        self.wd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/wd.gif")
+        self.zs=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/zs.gif")
+        self.zd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/zd.gif")
+        self.fdv=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fds.gif")
+        self.fws=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fws.gif")
+        self.fwd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fwd.gif")
+        self.fzs=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fzs.gif")
+        self.fzd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fzd.gif")
 
         self.board_frame.columnconfigure(0,minsize=0, pad=0)
         self.board_frame.columnconfigure(1,minsize=0, pad=0)
@@ -171,7 +171,7 @@ class DraughtBoardView:
         self.board_position.ColorOnMove = position.ColorOnMove
 
         temp = position.WhiteMan + position.WhiteKing + position.BlackKing + position.BlackMan
-        Empty = range(1,51)
+        Empty = list(range(1,51))
         for item in temp:
             Empty.remove(item)
         for i in position.WhiteMan:
@@ -279,21 +279,21 @@ class BigDraughtBoardView:
         self.board_frame.grid(row=0,column=1)
         self.entire_board_frame.rowconfigure(0, weight=100)
         # define the draught board itself
-        self.empty_field          = PhotoImage(file="/home/feike/Horizon/images/empty_field.gif")
-        self.empty_field_selected = PhotoImage(file="/home/feike/Horizon/images/empty_field_selected.gif")
-        self.empty_field_proposed = PhotoImage(file="/home/feike/Horizon/images/empty_field_proposed.gif")
-        self.white_man            = PhotoImage(file="/home/feike/Horizon/images/white_man.gif")
-        self.white_man_selected   = PhotoImage(file="/home/feike/Horizon/images/white_man_selected.gif")
-        self.white_man_proposed   = PhotoImage(file="/home/feike/Horizon/images/white_man_proposed.gif")
-        self.white_king           = PhotoImage(file="/home/feike/Horizon/images/white_king.gif")
-        self.white_king_selected  = PhotoImage(file="/home/feike/Horizon/images/white_king_selected.gif")
-        self.white_king_proposed  = PhotoImage(file="/home/feike/Horizon/images/white_king_proposed.gif")
-        self.black_man            = PhotoImage(file="/home/feike/Horizon/images/black_man.gif")
-        self.black_man_selected   = PhotoImage(file="/home/feike/Horizon/images/black_man_selected.gif")
-        self.black_man_proposed   = PhotoImage(file="/home/feike/Horizon/images/black_man_proposed.gif")
-        self.black_king           = PhotoImage(file="/home/feike/Horizon/images/black_king.gif")
-        self.black_king_selected  = PhotoImage(file="/home/feike/Horizon/images/black_king_selected.gif")
-        self.black_king_proposed  = PhotoImage(file="/home/feike/Horizon/images/black_king_proposed.gif")
+        self.empty_field          = PhotoImage(file=HORIZON_HOME + "/Horizon/images/empty_field.gif")
+        self.empty_field_selected = PhotoImage(file=HORIZON_HOME + "/Horizon/images/empty_field_selected.gif")
+        self.empty_field_proposed = PhotoImage(file=HORIZON_HOME + "/Horizon/images/empty_field_proposed.gif")
+        self.white_man            = PhotoImage(file=HORIZON_HOME + "/Horizon/images/white_man.gif")
+        self.white_man_selected   = PhotoImage(file=HORIZON_HOME + "/Horizon/images/white_man_selected.gif")
+        self.white_man_proposed   = PhotoImage(file=HORIZON_HOME + "/Horizon/images/white_man_proposed.gif")
+        self.white_king           = PhotoImage(file=HORIZON_HOME + "/Horizon/images/white_king.gif")
+        self.white_king_selected  = PhotoImage(file=HORIZON_HOME + "/Horizon/images/white_king_selected.gif")
+        self.white_king_proposed  = PhotoImage(file=HORIZON_HOME + "/Horizon/images/white_king_proposed.gif")
+        self.black_man            = PhotoImage(file=HORIZON_HOME + "/Horizon/images/black_man.gif")
+        self.black_man_selected   = PhotoImage(file=HORIZON_HOME + "/Horizon/images/black_man_selected.gif")
+        self.black_man_proposed   = PhotoImage(file=HORIZON_HOME + "/Horizon/images/black_man_proposed.gif")
+        self.black_king           = PhotoImage(file=HORIZON_HOME + "/Horizon/images/black_king.gif")
+        self.black_king_selected  = PhotoImage(file=HORIZON_HOME + "/Horizon/images/black_king_selected.gif")
+        self.black_king_proposed  = PhotoImage(file=HORIZON_HOME + "/Horizon/images/black_king_proposed.gif")
 
         self.board_frame.columnconfigure(0,minsize=0, pad=0)
         self.board_frame.columnconfigure(1,minsize=0, pad=0)
@@ -420,7 +420,7 @@ class BigDraughtBoardView:
         self.board_position.ColorOnMove = position.ColorOnMove
 
         temp = position.WhiteMan + position.WhiteKing + position.BlackKing + position.BlackMan
-        Empty = range(1,51)
+        Empty = list(range(1,51))
         for item in temp:
             Empty.remove(item)
         for i in position.WhiteMan:

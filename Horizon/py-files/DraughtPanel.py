@@ -8,8 +8,8 @@
 
 """User Interface for International Draught Board"""
 
-from Tkinter import *
-import tkFont
+from tkinter import *
+import tkinter.font
 from DraughtConstants import *
 dc =DraughtConstants()         # get the global constants
 
@@ -51,7 +51,7 @@ class DraughtPanel:
         self.Round = StringVar()
         self.Event = StringVar()
         self.result_text = StringVar()
-        self.myFont = tkFont.Font(family="helvetica", weight="bold", size=9)
+        self.myFont = tkinter.font.Font(family="helvetica", weight="bold", size=9)
         # frames
 #        self.frame_overall_frame          = Frame(self.root, relief = GROOVE, bd =4)
         self.info_frame                         =Frame(self.root, bd=3, relief=GROOVE)
@@ -83,16 +83,16 @@ class DraughtPanel:
 
 
         # define the draught board itself
-        self.dv=PhotoImage(file="/home/feike/BoomstraDam/images/ds.gif")
-        self.ws=PhotoImage(file="/home/feike/BoomstraDam/images/ws.gif")
-        self.wd=PhotoImage(file="/home/feike/BoomstraDam/images/wd.gif")
-        self.zs=PhotoImage(file="/home/feike/BoomstraDam/images/zs.gif")
-        self.zd=PhotoImage(file="/home/feike/BoomstraDam/images/zd.gif")
-        self.fdv=PhotoImage(file="/home/feike/BoomstraDam/images/fds.gif")
-        self.fws=PhotoImage(file="/home/feike/BoomstraDam/images/fws.gif")
-        self.fwd=PhotoImage(file="/home/feike/BoomstraDam/images/fwd.gif")
-        self.fzs=PhotoImage(file="/home/feike/BoomstraDam/images/fzs.gif")
-        self.fzd=PhotoImage(file="/home/feike/BoomstraDam/images/fzd.gif")
+        self.dv=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/ds.gif")
+        self.ws=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/ws.gif")
+        self.wd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/wd.gif")
+        self.zs=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/zs.gif")
+        self.zd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/zd.gif")
+        self.fdv=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fds.gif")
+        self.fws=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fws.gif")
+        self.fwd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fwd.gif")
+        self.fzs=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fzs.gif")
+        self.fzd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fzd.gif")
 
         self.board_frame.columnconfigure(0,minsize=0, pad=0)
         self.board_frame.columnconfigure(1,minsize=0, pad=0)
@@ -423,12 +423,12 @@ class DraughtPanel:
         if self.phase.get()==dc.PLAY_MODE:
             self.main.exit_clicked()
         else:
-            self.main.play.engine.send_close_engine()
-            self.root.quit()
+            self.main.play.end_proc()
         return
 
     def stop_engine(self):
-        self.main.play.engine.send_close_engine()
+        if self.main.EngineStarted == True:
+            self.main.play.engine.send_close_engine()
         return
 
 
@@ -561,6 +561,6 @@ class DraughtPanel:
     def get_analyse_depth(self):
         items = self.depth_list_box.curselection()
         try:
-            items = map(int, items)
+            items = list(map(int, items))
         except ValueError: pass
         return (2* items[0]) +2
