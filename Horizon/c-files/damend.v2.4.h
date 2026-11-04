@@ -75,7 +75,7 @@ extern BOOL endgame_5_6(long *valp);
 extern BOOL find_end(void);
 extern void add_end(void);
 extern BOOL save_end(char *fname);
-extern BOOL load_end(char *fname);
+extern BOOL load_end(const char *fname);
 extern BOOL init_end(void);
 extern void exit_end(void);
 extern void comp_chkend(void);

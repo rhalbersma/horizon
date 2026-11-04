@@ -1931,7 +1931,7 @@ save_end(char *fname)
 /* in: fname = name of file, or null */
 /* returns: TRUE if OK               */
 BOOL
-load_end(char *fname)
+load_end(const char *fname)
 {   int hf = open(fname, O_RDONLY);
     ULONG bytesRead;
     switch (hf < 0)

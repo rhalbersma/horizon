@@ -310,6 +310,7 @@ void * partial_init_hash_depth(void * Ptr) {
 	long node_nr;
 	InitPnt init_rec = (InitPnt) Ptr;
 	for (node_nr = init_rec->low ; node_nr < init_rec->high; node_nr++)	{hash[node_nr].search_depth = -1;}; // reset depth to -1 for each new move
+	return NULL;
 }
 
 void parallel_init_hash_depth(void){
@@ -346,6 +347,7 @@ void * partial_init_hash_zero(void * Ptr) {
 	long node_nr;
 	InitPnt init_rec = (InitPnt) Ptr;
 	for (node_nr = init_rec->low ; node_nr < init_rec->high; node_nr++)	{hash[node_nr].occ_empty = 0;}; // clear entry
+	return NULL;
 }
 
 void parallel_init_hash_zero(void){
@@ -410,8 +412,8 @@ void init_hash()
 	return;
 }
 long calc_initial_hash_key(NodePnt node)
-{	register long temp;
-	register BitArray cur_bit;
+{	long temp;
+	BitArray cur_bit;
 	int i,j;
 
 	if (node->status & IS_WHITE_ON_MOVE) temp = WHITE_HASH;
