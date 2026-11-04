@@ -34,7 +34,7 @@ class ReadPDN:
         return
 
 
-    def get_pdn_file(self, test,  filename = '/home/feike/BoomstraDam/pdn files/thijssen.pdn' ):
+    def get_pdn_file(self, test,  filename = HORIZON_HOME + '/BoomstraDam/pdn files/thijssen.pdn' ):
         self.s             = ''                # the string with the input to analyse
         self.cp            = 0                 # current position pointer in this string
         self.current_color = dc.WHITE_ON_MOVE  # used to analyse begin position
@@ -47,7 +47,7 @@ class ReadPDN:
             self.fname = filename
         else:
             self.fdlg = tkinter.filedialog.LoadFileDialog(self.root, title="Choose A PDN File")
-            self.fname = self.fdlg.go(pattern="*.pdn", dir_or_file='/home/feike/Horizon/pdn-files') # opt args: dir_or_file=os.curdir, pattern="*", default="", key=None)
+            self.fname = self.fdlg.go(pattern="*.pdn", dir_or_file=HORIZON_HOME + '/Horizon/pdn-files') # opt args: dir_or_file=os.curdir, pattern="*", default="", key=None)
 
         self.file_open_flag = True
         try:
@@ -91,7 +91,7 @@ class ReadPDN:
             self.fname = filename
         else:
             self.fdlg = tkinter.filedialog.LoadFileDialog(self.root, title="Choose A PDN File")
-            self.fname = self.fdlg.go(pattern="*.pdn", dir_or_file='/home/feike/Horizon/pdn-files')
+            self.fname = self.fdlg.go(pattern="*.pdn", dir_or_file=HORIZON_HOME + '/Horizon/pdn-files')
 
         self.file_open_flag = True
         try:

@@ -5,6 +5,9 @@
 #  http://www.boost.org/LICENSE_1_0.txt)
 #
 
+import os
+
+HORIZON_HOME = os.environ.get("HORIZON_HOME") or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 class DraughtConstants:
     def __init__(self):

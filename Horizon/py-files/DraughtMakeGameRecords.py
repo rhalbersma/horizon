@@ -7,6 +7,7 @@
 
 
 from DraughtDataStructures import *
+from DraughtConstants import HORIZON_HOME
 import pickle
 
 class DraughtMakeGameRecords:
@@ -15,8 +16,8 @@ class DraughtMakeGameRecords:
         return
 
     def MakeGameRecords(self):
-        RatingFile = '/home/feike/workspace/collected/fmjd_rating_04_2009.txt'
-        InputFile = '/home/feike/workspace/collected/partijen 2006.txt'
+        RatingFile = HORIZON_HOME + '/workspace/collected/fmjd_rating_04_2009.txt'
+        InputFile = HORIZON_HOME + '/workspace/collected/partijen 2006.txt'
 #        OutDir = '/home/feike/BoomstraDam/pdn files/game records/'
 #        GameNumber = 0;
         rating = open(RatingFile, 'r')
@@ -36,7 +37,7 @@ class DraughtMakeGameRecords:
             rating_value_list.append(rating_value)
         rating.close()
         # got the rating info per player
-        ResultRating = '/home/feike/workspace/game records.csv'
+        ResultRating = HORIZON_HOME + '/workspace/game records.csv'
         ofile = open(ResultRating, 'w')
         file = open(InputFile, 'r')
         #while 1:
@@ -196,7 +197,7 @@ class DraughtMakeGameRecords:
       for k in range(0, len(self.PosList)):
         self.Dict.append((self.PosList[k], self.MoveDictList[k]))
       self.Dict = dict(self.Dict)
-      file = open('/home/feike/Horizon/Opening Books/PosDict.pickle', 'w')
+      file = open(HORIZON_HOME + '/Horizon/Opening Books/PosDict.pickle', 'w')
       pickle.dump(self.Dict, file)
       file.close()
       return

@@ -171,7 +171,7 @@ class DraughtWalkHash:
 
 
     def walk_hash_script(self):
-        self.main.read.get_pdn_file(True,  '/home/feike/BoomstraDam/pdn files/aaa.pdn') #open the test pdn file
+        self.main.read.get_pdn_file(True,  HORIZON_HOME + '/BoomstraDam/pdn files/aaa.pdn') #open the test pdn file
         game = self.main.ActiveGame
         game.HalfPlyPointer = game.half_ply_length() #end of file
         game.build_till_pointer()

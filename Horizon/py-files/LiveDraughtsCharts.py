@@ -19,7 +19,7 @@ from pickle import *
 class LiveDraughts():
   def __init__(self, main):
     self.url = 'http://www.livedraughts.com/NKvrouwen/'
-    self.local = '/home/feike/Horizon/LiveDraughts/'
+    self.local = HORIZON_HOME + '/Horizon/LiveDraughts/'
     self.total_nr_of_rounds = 9
     self.total_nr_of_boards = 5
     self.round_nr = 1
@@ -257,7 +257,7 @@ class LiveDraughts():
     for self.index in range(1, self.total_nr_of_boards + 1):
       print("upload:" + str(self.index) + '.chart.png')
       ftp.storbinary('STOR ./www/NKvrouwen/charts/' + str(self.index) + '.chart.png', \
-                     open('/home/feike/Horizon/LiveDraughts/start.png' , 'rb'))
+                     open(HORIZON_HOME + '/Horizon/LiveDraughts/start.png' , 'rb'))
     ftp.quit()
     return
 

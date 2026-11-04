@@ -1,3 +1,3 @@
 #!/bin/bash
 ulimit -c unlimited
-python /home/feike/Horizon/py-files/DraughtMain.py -t
+cd "$(dirname "$0")/Horizon/py-files" && exec python3 DraughtMain.py -t

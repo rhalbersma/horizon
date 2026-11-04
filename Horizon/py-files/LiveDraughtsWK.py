@@ -10,6 +10,7 @@ import urllib.request, urllib.error, urllib.parse
 from zlib import *
 import gzip
 from DraughtDataStructures import *
+from DraughtConstants import HORIZON_HOME
 from DraughtSetUp import *
 import os
 import shutil
@@ -199,7 +200,7 @@ class LiveMenuProc():
 class LiveDraughts():
   def __init__(self):
     self.url = 'http://www.livedraughts.com/WK2009/'
-    self.local = '/home/feike/Horizon/LiveDraughts/'
+    self.local = HORIZON_HOME + '/Horizon/LiveDraughts/'
     self.round_nr = 1
     self.round = 'ronde1'
     self.index = 1

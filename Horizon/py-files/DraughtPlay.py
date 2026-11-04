@@ -60,7 +60,7 @@ class DraughtPlay:
         self.MiliSecondsRemaining = 1000
         self.NumberOfMovesToGo = 0
         self.RemainingEnigineTimeAvailable = self.main.TotalEngineTime
-        file = open('/home/feike/Horizon/Opening Books/OpeningBook.pickle', 'r')
+        file = open(HORIZON_HOME + '/Horizon/Opening Books/OpeningBook.pickle', 'r')
         self.OpeningBook = pickle.load(file)
         file.close()
 
@@ -187,14 +187,7 @@ class DraughtPlay:
                 print("ACK! PROCESS NOT KILLED?")
 
               # now the engine:
-            debug_file_name =   "/home/feike/Horizon/Debug/Horizon1.0"
-            release_file_name = "/home/feike/Horizon/Release/Horizon1.0"
-            d_mtime = os.stat(debug_file_name)[ST_MTIME]
-            r_mtime = os.stat(release_file_name)[ST_MTIME]
-            if r_mtime > d_mtime:
-              file_name = release_file_name
-            else:
-              file_name = debug_file_name
+            file_name = os.path.join(HORIZON_HOME, "Horizon", "horizon")
             print("using engine:", file_name)
 #            self.EngineID = os.spawnl(os.P_NOWAIT, file_name)
             self.EngineID = subprocess.Popen([file_name]).pid

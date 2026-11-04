@@ -122,7 +122,7 @@ class ReadStand:
         self.s             = ''                # the string with the input to analyse
         self.cp            = 0                 # current position pointer in this string
         self.fdlg = tkinter.filedialog.LoadFileDialog(self.root, title="Choose A Stand File")
-        self.fname = self.fdlg.go(pattern="*.stand", dir_or_file='/home/feike/Horizon/Stand')
+        self.fname = self.fdlg.go(pattern="*.stand", dir_or_file=HORIZON_HOME + '/Horizon/Stand')
         self.file_open_flag = True
         try:
             self.f = open(self.fname, 'r')

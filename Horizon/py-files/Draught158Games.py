@@ -131,7 +131,7 @@ class Draught158Games:
     self.main.panel.result_text.set(result_str)
     self.main.ActiveGame.Result = msg[1:4]
     # save the game
-    f = open('/home/feike/Horizon/pdn-files/158/' + file_name, 'w')
+    f = open(HORIZON_HOME + '/Horizon/pdn-files/158/' + file_name, 'w')
     f.write(self.main.save.game_to_string(self.main.ActiveGame))
     f.close()
     print(file_name, "saved")
@@ -139,7 +139,7 @@ class Draught158Games:
     if self._next_position() == False:
       return
     # and save environment
-    file_name = '/home/feike/Horizon/pdn-files/158/pickle'
+    file_name = HORIZON_HOME + '/Horizon/pdn-files/158/pickle'
     save_main = self.main
     self.main = None
     f = open(file_name, 'w')
@@ -201,7 +201,7 @@ class Play_158:
     return
 
   def play_158(self):
-    file_name = '/home/feike/Horizon/pdn-files/158/pickle'
+    file_name = HORIZON_HOME + '/Horizon/pdn-files/158/pickle'
     try:
       f = open(file_name, 'r')
       play158 = load(f)
@@ -218,15 +218,15 @@ class Play_158:
     return
 
   def make_lost_docs(self):
-    for file in os.listdir('/home/feike/Horizon/pdn-files/158'):
+    for file in os.listdir(HORIZON_HOME + '/Horizon/pdn-files/158'):
       if fnmatch.fnmatch(file, '*lost.pdn'):
-        long_file_name = '/home/feike/Horizon/pdn-files/158/' + file
+        long_file_name = HORIZON_HOME + '/Horizon/pdn-files/158/' + file
         self.main.read.get_pdn_file(True, long_file_name)
-        export_file_name = '/home/feike/workspace/lost_' + str(datetime.date.today()) + '_' + self.main.ActiveGame.Round + '.doc'
+        export_file_name = HORIZON_HOME + '/workspace/lost_' + str(datetime.date.today()) + '_' + self.main.ActiveGame.Round + '.doc'
         self.main.save.save_doc_file(export_file_name)
         # and copy the pdn file:
         f = open(long_file_name, 'r')
-        g = open('/home/feike/Horizon/pdn-files/lost/lost_' + str(datetime.date.today()) + '_' + self.main.ActiveGame.Round + '.pdn', 'w')
+        g = open(HORIZON_HOME + '/Horizon/pdn-files/lost/lost_' + str(datetime.date.today()) + '_' + self.main.ActiveGame.Round + '.pdn', 'w')
         for line in f:
           g.write(line)
         f.close()

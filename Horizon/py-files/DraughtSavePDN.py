@@ -41,7 +41,7 @@ class DraughtSavePDN:
         self.fdlg = tkinter.filedialog.SaveFileDialog(self.root, title="Save A PDN File")
         if self.file_name == "":
             self.file_name = "test.pdn"
-        self.file_name = self.fdlg.go(dir_or_file='/home/feike/Horizon/pdn-files', \
+        self.file_name = self.fdlg.go(dir_or_file=HORIZON_HOME + '/Horizon/pdn-files', \
                                       default = self.file_name, key = None)
         self.file_open_flag = True
         try:
@@ -198,7 +198,7 @@ class DraughtSavePDN:
           if self.file_name == "":
               self.file_name = "truus2009.doc"
           #self.file_name = self.fdlg.go(dir_or_file='/home/feike/BoomstraDam/doc files', \
-          self.file_name = self.fdlg.go(dir_or_file='/home/feike/workspace', \
+          self.file_name = self.fdlg.go(dir_or_file=HORIZON_HOME + '/workspace', \
                                         default = self.file_name, key = None)
         else:
           self.file_name = doc_file_name
@@ -235,7 +235,7 @@ class DraughtSavePDN:
 #        if os.path.exists('/home/feike/Horizon/pdn-files/test-files/' + base + '.' + str(k).zfill(3) + '.pdn') == False:
 #          break
 #      return base + '.' + str(k).zfill(3) + '.pdn'
-      return '/home/feike/Horizon/pdn-files/test-files/' + base + '.pdn'
+      return HORIZON_HOME + '/Horizon/pdn-files/test-files/' + base + '.pdn'
 
     def copy_current_to_begin_position(self, old_game, new_game):
         new_game.BeginPosition.WhiteMan = old_game.CurrentPosition.WhiteMan[:]

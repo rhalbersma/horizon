@@ -83,16 +83,16 @@ class DraughtPanel:
 
 
         # define the draught board itself
-        self.dv=PhotoImage(file="/home/feike/BoomstraDam/images/ds.gif")
-        self.ws=PhotoImage(file="/home/feike/BoomstraDam/images/ws.gif")
-        self.wd=PhotoImage(file="/home/feike/BoomstraDam/images/wd.gif")
-        self.zs=PhotoImage(file="/home/feike/BoomstraDam/images/zs.gif")
-        self.zd=PhotoImage(file="/home/feike/BoomstraDam/images/zd.gif")
-        self.fdv=PhotoImage(file="/home/feike/BoomstraDam/images/fds.gif")
-        self.fws=PhotoImage(file="/home/feike/BoomstraDam/images/fws.gif")
-        self.fwd=PhotoImage(file="/home/feike/BoomstraDam/images/fwd.gif")
-        self.fzs=PhotoImage(file="/home/feike/BoomstraDam/images/fzs.gif")
-        self.fzd=PhotoImage(file="/home/feike/BoomstraDam/images/fzd.gif")
+        self.dv=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/ds.gif")
+        self.ws=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/ws.gif")
+        self.wd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/wd.gif")
+        self.zs=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/zs.gif")
+        self.zd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/zd.gif")
+        self.fdv=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fds.gif")
+        self.fws=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fws.gif")
+        self.fwd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fwd.gif")
+        self.fzs=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fzs.gif")
+        self.fzd=PhotoImage(file=HORIZON_HOME + "/BoomstraDam/images/fzd.gif")
 
         self.board_frame.columnconfigure(0,minsize=0, pad=0)
         self.board_frame.columnconfigure(1,minsize=0, pad=0)
