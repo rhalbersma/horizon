@@ -8,7 +8,7 @@
 
 """User Interface for obtaining game information"""
 
-from Tkinter import *
+from tkinter import *
 from DraughtConstants import *
 dc =DraughtConstants()         # get the global constants
 

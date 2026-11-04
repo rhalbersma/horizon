@@ -9,7 +9,7 @@
 from DraughtConstants import *
 import socket
 import sys
-from Tkinter import *
+from tkinter import *
 from types import *
 import os
 
@@ -25,42 +25,42 @@ class EngineSocket:
         #af, socktype, proto, canonname, sa = socket.getaddrinfo(HOST, PORT, socket.AF_UNSPEC, socket.SOCK_STREAM, 0, socket.AI_PASSIVE)
         #print af, socktype, proto
         try:
-            print "make socket"
+            print("make socket")
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        except socket.error, reason:
+        except socket.error as reason:
             code, msg = reason.args
-            print msg
+            print(msg)
             self.flag =  False
             return
         try:
-            print "bind it"
+            print("bind it")
             s.bind((HOST, PORT))
-        except socket.error, reason:
+        except socket.error as reason:
             code, msg = reason.args
-            print msg
+            print(msg)
             s.close()
             self.flag =  False
             return
         try:
-            print "make it listen"
+            print("make it listen")
             s.listen(1)
-        except socket.error, reason:
+        except socket.error as reason:
             code, msg = reason.args
-            print msg
+            print(msg)
             s.close()
             self.flag =  False
             return
         try:
-            print "trying to accept"
+            print("trying to accept")
             self.conn, self.addr = s.accept()
-        except socket.error, reason:
+        except socket.error as reason:
             code, msg = reason.args
-            print msg
+            print(msg)
             s.close()
             self.flag =  False
             return
-        print 'Connected by', self.addr
+        print('Connected by', self.addr)
         s.close()
         self.flag = True
         return

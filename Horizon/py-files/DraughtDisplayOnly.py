@@ -6,7 +6,7 @@
 #
 
 
-from Tkinter import *
+from tkinter import *
 from DraughtConstants import *
 
 dc = DraughtConstants()

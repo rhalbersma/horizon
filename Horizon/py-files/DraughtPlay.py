@@ -13,8 +13,8 @@ import time
 import sys
 import copy
 import pickle
-from Tkinter import *
-import tkMessageBox
+from tkinter import *
+import tkinter.messagebox
 from DraughtConstants import *
 from MoveGenerator import *
 from ComputerPlayer import *
@@ -30,7 +30,6 @@ from DraughtRemotePlayer import *
 from LiveDraughtsWK import *
 
 from wave import open as waveOpen
-from ossaudiodev import open as ossOpen
 dc = DraughtConstants()
 from ftplib import FTP
 from random import *
@@ -77,44 +76,44 @@ class DraughtPlay:
                   self.best_move_received(msg)
         elif msg[0] == 'X':
             self.main.EngineStarted = False
-            if self.RescueProcess <> None:
+            if self.RescueProcess != None:
               self.RescueProcess()
         elif msg[0] == 'T':
            self.main.anal.send_next_move_for_timing()
         elif msg[0] == 'E':
-            print "End of Game (by Engine) received"
+            print("End of Game (by Engine) received")
             self.engine_says_end_of_game(msg)
         elif msg[0] == 'F':
             self.main.anal.final_report_ready()
         elif msg[0] == 'M':
             self.ProcesFixedDepth(msg)
         elif msg[0] == 'S':
-            print "python: Eval Received"
+            print("python: Eval Received")
             self.eval_value_received(msg)
         elif msg[0] == 'L':
-            print "python: Eval Parameters Received"
+            print("python: Eval Parameters Received")
             self.main.anal.eval_par_received(msg)
         elif msg[0] == 'A':
-            print "python: All Moves Received"
+            print("python: All Moves Received")
             self.main.anal.receive_all_moves(msg)
         elif msg[0] == 'H':
             #print "python: Hash Node Received"
             self.main.walk_hash.receive_hash_node(msg)
         elif msg[0] == 'P':
-            print "python: Self Play Result received"
+            print("python: Self Play Result received")
             self.main.cem.receive_result(msg)
         else:
-            print "Dispatch engine message -- unknown message: ", msg
+            print("Dispatch engine message -- unknown message: ", msg)
         return
 # ------------------------------------------------------------------------------------------------
 
     def dispatch_remote_messages(self, msg):
         #print "dispatch remote message: ",
         if msg[0] == 'R':
-            print "received game request"
+            print("received game request")
             self.received_game_req_message(msg)
         elif msg[0] == 'A':
-            print "received game request accepted"
+            print("received game request accepted")
             # game acc, we have to decide whether further action is needed
             self.check_next_move()
         elif msg[0] == 'M':
@@ -123,23 +122,23 @@ class DraughtPlay:
             self.proces_remote_move(msg)
         elif msg[0] == 'E':
             # game end
-            print "recieved end game"
+            print("recieved end game")
             self.main.panel.phase.set(dc.SETUP_MODE)                      # stop playing
             self.main.panel.setup_mode()
             self.obtain_result()
         elif msg[0] == 'B':
-            print "received take back request message"
+            print("received take back request message")
             # back req
             self.remote.send_back_acc_message()
         elif msg[0] == 'K':
-            print "received take back acceptance message"
+            print("received take back acceptance message")
             # back acc
             pass
         elif msg[0] == 'C':
-            print "received pv", msg
+            print("received pv", msg)
             self.Received_PV(msg)
         else:
-            print " -- unknown message: ", msg
+            print(" -- unknown message: ", msg)
         return
 
     def create_variant(self, game):
@@ -185,7 +184,7 @@ class DraughtPlay:
               os.kill(self.EngineID, signal.SIGKILL)
               killedpid, stat = os.waitpid(self.EngineID, os.WNOHANG)
               if killedpid == 0:
-                print "ACK! PROCESS NOT KILLED?"
+                print("ACK! PROCESS NOT KILLED?")
 
               # now the engine:
             debug_file_name =   "/home/feike/Horizon/Debug/Horizon1.0"
@@ -196,19 +195,19 @@ class DraughtPlay:
               file_name = release_file_name
             else:
               file_name = debug_file_name
-            print "using engine:", file_name
+            print("using engine:", file_name)
 #            self.EngineID = os.spawnl(os.P_NOWAIT, file_name)
             self.EngineID = subprocess.Popen([file_name]).pid
-            print "Engine ID:", self.EngineID
+            print("Engine ID:", self.EngineID)
             self.engine = EngineSocket()
             if self.engine.flag == True:
                 self.engine.conn.setblocking(0) # set nonblocking
-                print "Engine started"
+                print("Engine started")
                 self.main.EngineStarted = True
                 self.engine_socket_reader = SocketReader("python", self.main, self, self.engine.conn, self.dispatch_engine_messages, self.main.root)
                 #self.socket.input_add(self.engine.conn, 0, self.dispatch_engine_messages)
             else:
-                print "can't start engine"
+                print("can't start engine")
                 self.main.root.quit()
             self.RescueProcess = None
         return
@@ -238,7 +237,7 @@ class DraughtPlay:
             ColorOnMove = 'W'
         else: ColorOnMove = 'Z'
         BeginPosition = game.get_50_sq_position()
-        print ColorRemotePlayer, ThinkingTime, NumberOfPlies, BeginPositionID, ColorOnMove, BeginPosition
+        print(ColorRemotePlayer, ThinkingTime, NumberOfPlies, BeginPositionID, ColorOnMove, BeginPosition)
         self.remote.send_game_req_message(ColorRemotePlayer, ThinkingTime, \
                                              NumberOfPlies, BeginPositionID, ColorOnMove, BeginPosition)
         return
@@ -313,7 +312,7 @@ class DraughtPlay:
             self.panel.phase.set(dc.PLAY_MODE)
             self.startup_engine()
             self.remote.send_game_acc_message()
-            print "Remote send acc message"
+            print("Remote send acc message")
             self.engine.send_init_game(game, numb, think)
             self.get_move_from_book = True
             self.check_next_move()
@@ -324,12 +323,12 @@ class DraughtPlay:
         if self.panel.current_color_on_move.get()==dc.WHITE_ON_MOVE:
             if self.panel.current_white_player.get()==dc.REMOTE_PLAYER:
                 pass
-                print "wait for white remote player"
+                print("wait for white remote player")
             else: self.next_move(self.main.ActiveGame)
         else:
             if self.panel.current_black_player.get()==dc.REMOTE_PLAYER:
                 pass
-                print "wait for black remote player"
+                print("wait for black remote player")
             else: self.next_move(self.main.ActiveGame)
         return
 
@@ -350,9 +349,9 @@ class DraughtPlay:
 
     def obtain_result(self):
         # end-game from remote or engine
-        print "obtain result"
+        print("obtain result")
         if self.EvalReceivedProc == None:
-          print "receive_proc == None"
+          print("receive_proc == None")
           self.EvalReceivedProc = self.GetResultGame
         self.main.anal.eval_mode_clicked(self.main.ActiveGame, False) # get eval, no printing
         return
@@ -405,7 +404,7 @@ class DraughtPlay:
 
     def play_mode(self):
         if self.main.ActiveGame == None:
-            print "No active game"
+            print("No active game")
             self.panel.phase.set(dc.SETUP_MODE)
             return
         game = self.main.ActiveGame
@@ -422,7 +421,7 @@ class DraughtPlay:
             self.NumberOfMovesToGo = self.main.TotalNumberOfMoves
             time_string = str(self.RemainingMinutes).zfill(2) + ":" + str(self.RemainingSeconds).zfill(2)
             self.main.panel.time_text.set(time_string)
-        if game.CurrentPosition.ColorOnMove <> self.panel.current_color_on_move.get():
+        if game.CurrentPosition.ColorOnMove != self.panel.current_color_on_move.get():
             game.CurrentPosition.ColorOnMove = self.panel.current_color_on_move.get()
             game.Moves = [] # changed colors, new start
             game.BeginPosition.BlackKing = game.CurrentPosition.BlackKing[:]
@@ -437,9 +436,9 @@ class DraughtPlay:
             if game.Moves == []:
                 game.BeginPosition.ColorOnMove = self.panel.current_color_on_move.get()
         else:
-            if tkMessageBox.askyesno("Horizon Question", "Overwrite remaining moves") == True:
+            if tkinter.messagebox.askyesno("Horizon Question", "Overwrite remaining moves") == True:
                 to_be_removed = game.half_ply_length() - game.HalfPlyPointer
-                print "Overwrite, to be removed = ", to_be_removed,  "half ply length = ", game.half_ply_length(), "half ply pointer = ", game.HalfPlyPointer
+                print("Overwrite, to be removed = ", to_be_removed,  "half ply length = ", game.half_ply_length(), "half ply pointer = ", game.HalfPlyPointer)
                 for k in range(0, to_be_removed):
                     game.remove_from_tail()
                 game.refresh_display()
@@ -450,11 +449,11 @@ class DraughtPlay:
         if self.panel.current_black_player.get()==dc.COMPUTER or \
            self.panel.current_white_player.get()==dc.COMPUTER:
             self.startup_engine()
-            print self.main.TotalNumberOfMoves, self.main.TotalEngineTime
+            print(self.main.TotalNumberOfMoves, self.main.TotalEngineTime)
             self.engine.send_init_game(game, self.main.TotalNumberOfMoves, self.main.TotalEngineTime)
         if self.panel.current_black_player.get()==dc.REMOTE_PLAYER and \
            self.panel.current_white_player.get()==dc.REMOTE_PLAYER:
-            print "only one remote player !!"
+            print("only one remote player !!")
             self.main.panel.setup_mode()
             return
         if self.panel.current_black_player.get()==dc.REMOTE_PLAYER or \
@@ -480,12 +479,12 @@ class DraughtPlay:
             self.engine.send_close_engine()
             os.waitpid(self.main.EngineID, 0)
             try:
-                print "python -- close socket"
+                print("python -- close socket")
                 self.engine.conn.close()
-            except socket.error, reason:
+            except socket.error as reason:
                 code, msg = reason.args
-                print msg
-            print "waiting for engine to stop"
+                print(msg)
+            print("waiting for engine to stop")
         self.main.root.quit()
         return
 
@@ -507,7 +506,7 @@ class DraughtPlay:
             elif self.panel.current_white_player.get()==dc.REMOTE_PLAYER:
                 self.panel.current_player.set(dc.REMOTE_PLAYER)
                 self.remote_player(game, prev_move)
-            else: print "invalid current white player"
+            else: print("invalid current white player")
         elif self.panel.current_color_on_move.get()==dc.BLACK_ON_MOVE:
             game.CurrentPosition.ColorOnMove = dc.BLACK_ON_MOVE
             if self.panel.current_black_player.get()==dc.COMPUTER:
@@ -516,8 +515,8 @@ class DraughtPlay:
                 self.human_player(game, prev_move)
             elif self.panel.current_black_player.get()==dc.REMOTE_PLAYER:
                 self.remote_player(game, prev_move)
-            else: print "invalid current black player"
-        else: print "invalid current color on move"
+            else: print("invalid current black player")
+        else: print("invalid current color on move")
         return # next_move
 
 ##    def old_computer_player(self, game, move):
@@ -536,13 +535,13 @@ class DraughtPlay:
         res, next_move = self.still_in_opening_book(game)
         #print res, next_move
         if res == True:
-          print "opening book:" , next_move
+          print("opening book:" , next_move)
           self.move_computed('N' + next_move + '000000' + '00')
           return
         else:
           res, next_move = self.forced_move(game)
           if res == True:
-            print "forced move:" , next_move
+            print("forced move:" , next_move)
             self.move_computed('N' + next_move + '000000' + '00')
             return
           else:
@@ -623,10 +622,10 @@ class DraughtPlay:
                 if move.Start == start and move.Stop == stop and set(caps) == set(move.Cap):
                     break
         if not (move.Start == start and move.Stop == stop):
-            print "Mismatch"
-            print "wanted : ", start , stop
-            print "got :"
-            for move in ml: print move
+            print("Mismatch")
+            print("wanted : ", start , stop)
+            print("got :")
+            for move in ml: print(move)
             return None, False, False
         else:
             save_move = move
@@ -766,8 +765,8 @@ class DraughtPlay:
                 if move.Start == start and move.Stop == stop and set(caps) == set(move.Cap):
                     break
         if not (move.Start == start and move.Stop == stop):
-            print "Mismatch"
-            print "wanted : ", start , stop
+            print("Mismatch")
+            print("wanted : ", start , stop)
             #print "got :"
             #for move in ml: print move;
             self.main.panel.setup_mode()
@@ -920,7 +919,7 @@ class DraughtPlay:
 
     def best_move_received(self, s):
         game = self.main.ActiveGame
-        print "best move received", game.HalfPlyPointer
+        print("best move received", game.HalfPlyPointer)
 ##        if s[1] == 'x':
 ##            if self.panel.current_color_on_move.get()==dc.WHITE_ON_MOVE:
 ##                self.panel.status_display.set("Black Wins!")
@@ -945,7 +944,7 @@ class DraughtPlay:
         move.Comment = str(result) + ': ' + str(start).zfill(2) + op + str(stop).zfill(2)
         game.HalfPlyPointer += 1
         if game.build_till_pointer() == False:
-          print "build till pointer is False"
+          print("build till pointer is False")
           if game.file_name_pdn:
             self.main.save.file_save_game_clicked(game.file_name_pdn)
           if game.file_name_chart:
@@ -968,7 +967,7 @@ class DraughtPlay:
           #self.main.root.after(500, self.main.live.process_analyze_queue) #blind
           self.main.root.after(500, self.main.live.next_polling) #tournament
           return # temporally end of game received
-        print "continue analysing with half ply =", game.HalfPlyPointer
+        print("continue analysing with half ply =", game.HalfPlyPointer)
         #self.main.chart.create_chart(game.file_name_chart)
         #self.beam_up_chart(game.file_name_chart, game.url_chart)
         self.engine.send_get_next_move(game)
@@ -995,7 +994,7 @@ class DraughtPlay:
             #ftp = FTP('www.kody.nl')
             connect = True
           except:
-            print "can't connect to FTP host"
+            print("can't connect to FTP host")
             sleep(2.0)
         login = False
         while login == False:
@@ -1004,14 +1003,14 @@ class DraughtPlay:
             #ftp.login("chart", "chart4ton")
             login = True
           except:
-            print "can't login to FTP host"
+            print("can't login to FTP host")
             sleep(2.0)
         try:
           ftp.storbinary('STOR ' + url_name, open(file_name, 'rb'))
-          print "uploaded", file_name
+          print("uploaded", file_name)
           done = True
         except:
-          print "can't upload", url_name
+          print("can't upload", url_name)
           sleep(1.0)
         try:
           ftp.quit()
@@ -1061,6 +1060,6 @@ class DraughtPlay:
       display_used_for_move = (self.LastStopTime - self.LastStartTime)
       display_used_till_now = self.main.TotalGameTime*60 - self.CurrentTimeToGo
       display_expected_used = (1.0-(float(self.NumberOfMovesToGo)/float(self.main.TotalNumberOfMoves)))*(self.main.TotalGameTime*60)
-      print display_used_for_move, display_used_till_now, display_expected_used
+      print(display_used_for_move, display_used_till_now, display_expected_used)
       return
 

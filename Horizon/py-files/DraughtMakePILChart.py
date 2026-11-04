@@ -6,7 +6,7 @@
 #
 
 
-import Image, ImageDraw
+from PIL import Image, ImageDraw
 from math import *
 
 class DraughtMakeChart:
@@ -124,7 +124,7 @@ class DraughtMakeChart:
 #    self.MakeChart(raw, expected_move, file_name)
 
   def MakeChart(self, list, expected_move, black_name, file_name, white_name=None):
-    print list
+    print(list)
     self.create_canvas()
     self.set_marks(len(list))
     self.set_hor_marks()

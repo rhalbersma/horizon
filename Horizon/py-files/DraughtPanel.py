@@ -8,8 +8,8 @@
 
 """User Interface for International Draught Board"""
 
-from Tkinter import *
-import tkFont
+from tkinter import *
+import tkinter.font
 from DraughtConstants import *
 dc =DraughtConstants()         # get the global constants
 
@@ -51,7 +51,7 @@ class DraughtPanel:
         self.Round = StringVar()
         self.Event = StringVar()
         self.result_text = StringVar()
-        self.myFont = tkFont.Font(family="helvetica", weight="bold", size=9)
+        self.myFont = tkinter.font.Font(family="helvetica", weight="bold", size=9)
         # frames
 #        self.frame_overall_frame          = Frame(self.root, relief = GROOVE, bd =4)
         self.info_frame                         =Frame(self.root, bd=3, relief=GROOVE)
@@ -561,6 +561,6 @@ class DraughtPanel:
     def get_analyse_depth(self):
         items = self.depth_list_box.curselection()
         try:
-            items = map(int, items)
+            items = list(map(int, items))
         except ValueError: pass
         return (2* items[0]) +2

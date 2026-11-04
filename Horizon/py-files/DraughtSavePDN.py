@@ -7,12 +7,11 @@
 
 
 from DraughtDataStructures import *
-import FileDialog
-from Tkinter import *
+import tkinter.filedialog
+from tkinter import *
 import os
 import datetime
 import copy
-import symbol
 from DraughtConstants import *
 from DraughtGamePanel import *
 
@@ -33,13 +32,13 @@ class DraughtSavePDN:
     def file_save_game_clicked_3(self):
 
         self.entire_file = self.game_to_string(self.main.ActiveGame)
-        print self.entire_file
+        print(self.entire_file)
         return
 
 
     def file_save_game_clicked(self, file_name = None):
       if file_name == None:
-        self.fdlg = FileDialog.SaveFileDialog(self.root, title="Save A PDN File")
+        self.fdlg = tkinter.filedialog.SaveFileDialog(self.root, title="Save A PDN File")
         if self.file_name == "":
             self.file_name = "test.pdn"
         self.file_name = self.fdlg.go(dir_or_file='/home/feike/Horizon/pdn-files', \
@@ -48,37 +47,37 @@ class DraughtSavePDN:
         try:
             self.f=open(self.file_name, 'w')
         except:
-            print "File not created"
+            print("File not created")
       else:
         try:
             self.f=open(file_name, 'w')
         except:
-            print "File not created"
+            print("File not created")
 
       self.entire_file = ''
       for game in self.main.Games:
           self.entire_file = self.entire_file + self.game_to_string(game)
-      print self.entire_file
+      print(self.entire_file)
 
       try:
           self.f.write(self.entire_file)
       except:
-          print "File not written"
+          print("File not written")
       try:
           self.f.close()
       except:
-          print "File not closed"
+          print("File not closed")
       return
 
     def game_to_string(self, game):
         s = ''
-        if game.WhitePlayer <> '': s = s + '[White "'+ str(game.WhitePlayer) +'"]\n'
-        if game.BlackPlayer <> '': s = s + '[Black "'+ str(game.BlackPlayer) +'"]\n'
-        if game.Result <> '':      s = s + '[Result "'+ str(game.Result) +'"]\n'
-        if game.Event <> '':       s = s + '[Event "'+ str(game.Event) +'"]\n'
-        if game.Date <> '':        s = s + '[Date "'+ str(game.Date) +'"]\n'
-        if game.Round <> '':       s = s + '[Round "'+ str(game.Round) +'"]\n'
-        if game.GameType <> '':    s = s + '[GameType "'+ str(self.Round) +'"]\n'
+        if game.WhitePlayer != '': s = s + '[White "'+ str(game.WhitePlayer) +'"]\n'
+        if game.BlackPlayer != '': s = s + '[Black "'+ str(game.BlackPlayer) +'"]\n'
+        if game.Result != '':      s = s + '[Result "'+ str(game.Result) +'"]\n'
+        if game.Event != '':       s = s + '[Event "'+ str(game.Event) +'"]\n'
+        if game.Date != '':        s = s + '[Date "'+ str(game.Date) +'"]\n'
+        if game.Round != '':       s = s + '[Round "'+ str(game.Round) +'"]\n'
+        if game.GameType != '':    s = s + '[GameType "'+ str(self.Round) +'"]\n'
 
         # test if beginposition == defaultposition
 
@@ -90,18 +89,18 @@ class DraughtSavePDN:
             if game.BeginPosition.ColorOnMove == dc.WHITE_ON_MOVE:
                 s = s + "W:W"
             else: s = s + "B:W"
-            if game.BeginPosition.WhiteMan <> []:
+            if game.BeginPosition.WhiteMan != []:
                 for sq in game.BeginPosition.WhiteMan:
                     s = s + str(sq) + ','
-            if game.BeginPosition.WhiteKing <> []:
+            if game.BeginPosition.WhiteKing != []:
                 for sq in game.BeginPosition.WhiteKing:
                     s = s + 'K' + str(sq) + ','
             s = s[0: len(s)-1]      # remove the last comma
             s = s + ":\nB"
-            if game.BeginPosition.BlackMan <> []:
+            if game.BeginPosition.BlackMan != []:
                 for sq in game.BeginPosition.BlackMan:
                     s = s + str(sq) + ','
-            if game.BeginPosition.BlackKing <> []:
+            if game.BeginPosition.BlackKing != []:
                 for sq in game.BeginPosition.BlackKing:
                     s = s + 'K' + str(sq) + ','
             s = s[0: len(s)-1]      # remove the last comma
@@ -130,9 +129,9 @@ class DraughtSavePDN:
                         s = s + repr(step).zfill(2) + 'x'
                     s = s[0:-1]
                     s = s + ' ' # replace the last 'x'
-                if game.Moves[j].WhiteMove.Variant <> '':
+                if game.Moves[j].WhiteMove.Variant != '':
                    s = s + "(" + self.get_moves_pdn_string(game.Moves[j].WhiteMove.Variant, False) + ") "
-                if game.Moves[j].WhiteMove.Comment <> '':
+                if game.Moves[j].WhiteMove.Comment != '':
                     s = s +  self.check_pv_comment_to_string(game.Moves[j].WhiteMove, game.Moves[j].WhiteMove.Comment, True)
 
             if game.Moves[j].BlackMove :
@@ -145,9 +144,9 @@ class DraughtSavePDN:
                         s = s + repr(step).zfill(2) + 'x'
                     s = s[0:-1]
                     s = s + ' ' # replace the last 'x'
-                if game.Moves[j].BlackMove.Variant <> '':
+                if game.Moves[j].BlackMove.Variant != '':
                    s = s + "(" + self.get_moves_pdn_string(game.Moves[j].BlackMove.Variant, False) + ") "
-                if game.Moves[j].BlackMove.Comment <> '':
+                if game.Moves[j].BlackMove.Comment != '':
                     s = s +  self.check_pv_comment_to_string(game.Moves[j].BlackMove, game.Moves[j].BlackMove.Comment, False)
                 if format == True: s = s + '\n'
 
@@ -175,7 +174,7 @@ class DraughtSavePDN:
           moves_end = self.main.read.GetBlackStartMoves(0, new_game)
           if moves_end > 0: same_move = (move.Start == new_game.Moves[0].BlackMove.Start) and (move.Stop == new_game.Moves[0].BlackMove.Stop)
           else: same_move = False
-          print  move.Start, new_game.Moves[0].BlackMove.Start,  move.Stop, new_game.Moves[0].BlackMove.Stop
+          print(move.Start, new_game.Moves[0].BlackMove.Start,  move.Stop, new_game.Moves[0].BlackMove.Stop)
         if same_move == True: # moves
           s = s + '{%eval "truus" ' + comment[4:8] + '} ' + '(' + comment[13:13+moves_end] + ')'
         else:
@@ -195,7 +194,7 @@ class DraughtSavePDN:
 
     def save_doc_file(self, doc_file_name = None):  # this format can be read by TRUUS
         if doc_file_name == None:
-          self.fdlg = FileDialog.SaveFileDialog(self.root, title="Save A DOC File")
+          self.fdlg = tkinter.filedialog.SaveFileDialog(self.root, title="Save A DOC File")
           if self.file_name == "":
               self.file_name = "truus2009.doc"
           #self.file_name = self.fdlg.go(dir_or_file='/home/feike/BoomstraDam/doc files', \
@@ -207,7 +206,7 @@ class DraughtSavePDN:
         try:
             self.f=open(self.file_name, 'w')
         except:
-            print "File not created"
+            print("File not created")
             return
         s = ''
         for game in self.main.Games:
@@ -255,7 +254,7 @@ class DraughtSavePDN:
         try:
             self.f=open(self.file_name, 'a')
         except:
-            print "File not created"
+            print("File not created")
             return
         s = ''
         new_game = GameRecord(self.main, self.main.panel, self.main.panel, self.main.ActiveGame)
@@ -304,7 +303,7 @@ class DraughtSavePDN:
           else:
             game.Moves[-1].BlackMove = new_ply
           self.entire_file = self.game_to_string(game)
-          print self.entire_file
+          print(self.entire_file)
           self.f.write(self.entire_file)
 
 

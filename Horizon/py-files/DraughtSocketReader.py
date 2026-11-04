@@ -9,13 +9,13 @@
 import os
 import errno
 import socket
-import Tkinter
+import tkinter
 
 class SocketReader:
     
     def __init__(self, name, main, play, mysocket, mydispatcher, root = None):
         if root == None:
-            root = Tk()
+            root = tkinter.Tk()
         self.root = root
         self.play = play
         self.main = main
@@ -30,15 +30,15 @@ class SocketReader:
         no_data = False
         try:            
             data = self.socket.recv(1024)
-        except socket.error, reason:
+        except socket.error as reason:
             code, msg = reason.args
             no_data = True
-            if code <> errno.EAGAIN:
-                print self.name, " GUI -- socket error: ", msg
+            if code != errno.EAGAIN:
+                print(self.name, " GUI -- socket error: ", msg)
                 return
         if no_data == False:
             if len(data) == 0:
-                print self.name, " GUI -- socket closed by other party"
+                print(self.name, " GUI -- socket closed by other party")
                 self.socket.close()
                 self.dispatcher('X')    # tell them we are closed
             else:

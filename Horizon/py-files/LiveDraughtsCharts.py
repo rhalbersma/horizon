@@ -6,7 +6,7 @@
 #
 
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from zlib import *
 import gzip
 from DraughtDataStructures import *
@@ -63,7 +63,7 @@ class LiveDraughts():
 
   def analyse_line(self, line):
     cp = 1
-    while line[cp] <> '"':
+    while line[cp] != '"':
       cp += 1
     return line[1:cp], line[cp+1:-3]
 
@@ -81,10 +81,10 @@ class LiveDraughts():
     local_chart = self.local + 'ronde' + str(self.round_nr) + '/' + str(self.index) + '.chart.png'
     url_chart   = './www/NKvrouwen/charts' + '/' + str(self.index) + '.chart.png'
     try:
-      response = urllib2.urlopen(url_file)
-      print "opened url", url_file
+      response = urllib.request.urlopen(url_file)
+      print("opened url", url_file)
     except:
-      print "can't open url", url_file
+      print("can't open url", url_file)
       self.main.root.after(500, self.next_polling) # first try next
       return
     partij = response.read()
@@ -123,7 +123,7 @@ class LiveDraughts():
               stop = int(line[81:83])
               op = line[80]
               color = line[56]
-              print "adding: ", ext_ply_nr, color, start, op, stop
+              print("adding: ", ext_ply_nr, color, start, op, stop)
               if color == 'B': # it was the white move, now black is on move
                 move = PlyRecord()
                 move.Ply_nr = (ext_ply_nr - 1)/2 + 1
@@ -175,7 +175,7 @@ class LiveDraughts():
         elif word == 'SetUp':  game.SetUp       = kw_text
         elif word == 'S,':
           self.set_begin_position(game, line[4:54], line[56])
-          print game.BeginPosition
+          print(game.BeginPosition)
           game.Moves = [] #reset the moves till now, discard them
         elif word == 'N,': #collect the moves
           try:
@@ -185,9 +185,9 @@ class LiveDraughts():
           except:
             #got incomplete last line
             g.close()
-            print "incomplete?"
-            print line
-            print line[78:80], line[80:81], line[81:83]
+            print("incomplete?")
+            print(line)
+            print(line[78:80], line[80:81], line[81:83])
             return False
           if white == True:
             move = PlyRecord()
@@ -236,7 +236,7 @@ class LiveDraughts():
     elif color == 'W':
       game.BeginPosition.ColorOnMove = dc.BLACK_ON_MOVE
     else:
-      print "Color on move = ??", color
+      print("Color on move = ??", color)
     for i in range(1, 51):
       k = i-1
       if pos[k] == 'b':
@@ -255,7 +255,7 @@ class LiveDraughts():
     ftp = FTP('www.livedraughts.com')
     ftp.login("konin897", "me82rz")
     for self.index in range(1, self.total_nr_of_boards + 1):
-      print "upload:" + str(self.index) + '.chart.png'
+      print("upload:" + str(self.index) + '.chart.png')
       ftp.storbinary('STOR ./www/NKvrouwen/charts/' + str(self.index) + '.chart.png', \
                      open('/home/feike/Horizon/LiveDraughts/start.png' , 'rb'))
     ftp.quit()
@@ -265,7 +265,7 @@ class LiveDraughts():
 
 """User Interface for obtaining round information"""
 
-from Tkinter import *
+from tkinter import *
 from DraughtConstants import *
 dc =DraughtConstants()         # get the global constants
 

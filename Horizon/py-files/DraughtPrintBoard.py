@@ -29,10 +29,10 @@ class DraughtPrintBoard:
     return
 
   def print_collection(self, game):
-    print '/*'
+    print('/*')
     for i in range(0, 10):
-      print self.print_row[i]
-    print '*/'
+      print(self.print_row[i])
+    print('*/')
     return
 
   def pos_symbol(self, game, pos_nr):
@@ -63,7 +63,7 @@ class DraughtPrintBoard:
   def calc_range(self, row_nr):
     low = row_nr*5 + 1
     high = low + 5
-    return range(low, high)
+    return list(range(low, high))
 
   def clear_prints_clicked(self):
     game = self.main.ActiveGame

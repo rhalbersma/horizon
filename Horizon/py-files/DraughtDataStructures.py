@@ -6,7 +6,7 @@
 #
 
 
-from Tkinter import *
+from tkinter import *
 from DraughtRePlay import *
 from DraughtConstants import *
 dc = DraughtConstants()
@@ -30,12 +30,12 @@ class DraughtBoard:
 
     def get_empty_fields(self):
         temp = self.WhiteMan + self.WhiteKing + self.BlackKing + self.BlackMan
-        all = range(1,51)
+        all = list(range(1,51))
         for item in temp:
             if item in all:
                 all.remove(item)
             else:
-                print "try to remove:" , item
+                print("try to remove:" , item)
         return all
 
     def is_empty_field(self, nr):
@@ -77,13 +77,13 @@ class GameRecord:
 
     def __str__(self):
         s = ''
-        if self.WhitePlayer <> '': s = s + '[White "'+ str(self.WhitePlayer) +'"]\n'
-        if self.BlackPlayer <> '': s = s + '[Black "'+ str(self.BlackPlayer) +'"]\n'
-        if self.Result <> '':      s = s + '[Result "'+ str(self.Result) +'"]\n'
-        if self.Event <> '':       s = s + '[Event "'+ str(self.Event) +'"]\n'
-        if self.Date <> '':        s = s + '[Date "'+ str(self.Date) +'"]\n'
-        if self.Round <> '':       s = s + '[Round "'+ str(self.Round) +'"]\n'
-        if self.GameType <> '':    s = s + '[GameType "'+ str(self.GameType) +'"]\n'
+        if self.WhitePlayer != '': s = s + '[White "'+ str(self.WhitePlayer) +'"]\n'
+        if self.BlackPlayer != '': s = s + '[Black "'+ str(self.BlackPlayer) +'"]\n'
+        if self.Result != '':      s = s + '[Result "'+ str(self.Result) +'"]\n'
+        if self.Event != '':       s = s + '[Event "'+ str(self.Event) +'"]\n'
+        if self.Date != '':        s = s + '[Date "'+ str(self.Date) +'"]\n'
+        if self.Round != '':       s = s + '[Round "'+ str(self.Round) +'"]\n'
+        if self.GameType != '':    s = s + '[GameType "'+ str(self.GameType) +'"]\n'
         s = s + 'Begin:\n' + str(self.BeginPosition)
         for move in self.Moves:
             s = s + str(move)
@@ -158,18 +158,18 @@ class GameRecord:
     def refresh_game_info(self):
       if self.panel.WhitePlayer:
         if self.panel.WhitePlayer:
-            if self.WhitePlayer <> '': self.panel.WhitePlayer.set(str(self.WhitePlayer))
+            if self.WhitePlayer != '': self.panel.WhitePlayer.set(str(self.WhitePlayer))
         if self.panel.BlackPlayer:
-            if self.BlackPlayer <> '': self.panel.BlackPlayer.set(str(self.BlackPlayer))
+            if self.BlackPlayer != '': self.panel.BlackPlayer.set(str(self.BlackPlayer))
         if self.panel.Result:
-            if self.Result <> '':
+            if self.Result != '':
               self.panel.Result.set(str(self.Result))
         if self.panel.Event:
-            if self.Event <> '': self.panel.Event.set(str(self.Event))
+            if self.Event != '': self.panel.Event.set(str(self.Event))
         if self.panel.Round:
-            if self.Round <> '': self.panel.Round.set(str(self.Round))
+            if self.Round != '': self.panel.Round.set(str(self.Round))
         if self.panel.Date:
-            if self.Date <> '': self.panel.Date.set(str(self.Date))
+            if self.Date != '': self.panel.Date.set(str(self.Date))
       return
 
 
@@ -243,7 +243,7 @@ class GameRecord:
             self.CurrentPosition.BlackKing.remove(move.Start)
             self.CurrentPosition.BlackKing.append(move.Stop)
         else:
-            print "error"
+            print("error")
         self.CurrentPosition.Selected.append(move.Stop)
         self.CurrentPosition.Selected.append(move.Start)
         if self.CurrentPosition.ColorOnMove == dc.WHITE_ON_MOVE:
@@ -259,7 +259,7 @@ class GameRecord:
         if start == '' or stop == '': return None
         ml = self.main.mg.valid_move(self)
         if ml == []:
-            print "is valid move - Empty move list"
+            print("is valid move - Empty move list")
             return None
         for move in ml:
             if move.Start == start and move.Stop == stop:
@@ -269,10 +269,10 @@ class GameRecord:
                     if set(half_ply.Step) == set(move.Step):
                         break
         if not (move.Start == start and move.Stop == stop):
-            print "is valid move - Mismatch"
-            print "is valid move - wanted : ", start , stop
-            print "is valid move - got :"
-            for move in ml: print move;
+            print("is valid move - Mismatch")
+            print("is valid move - wanted : ", start , stop)
+            print("is valid move - got :")
+            for move in ml: print(move);
             return None
         # no invalid neither impossible moves
         return move
@@ -291,21 +291,21 @@ class GameRecord:
             for k in range(0, len(self.Moves)):
                 if self.Moves[k].WhiteMove:
                     valid_move = self.is_valid_move(self.Moves[k].WhiteMove)
-                    if valid_move <> None:
+                    if valid_move != None:
                         self.do_move(valid_move, False)
                         loc_pnt = loc_pnt + 1
                         if loc_pnt == self.HalfPlyPointer: break
                     else: # move is incorrect
-                      print "found illegal move"
+                      print("found illegal move")
                       return False
                 if self.Moves[k].BlackMove:
                     valid_move = self.is_valid_move(self.Moves[k].BlackMove)
-                    if valid_move <> None:
+                    if valid_move != None:
                         self.do_move(valid_move, False)
                         loc_pnt = loc_pnt + 1
                         if loc_pnt == self.HalfPlyPointer: break
                     else: # move is incorrect
-                      print "found illegal move"
+                      print("found illegal move")
                       return False
 
         self.CurrentPosition.Selected = []
@@ -397,7 +397,7 @@ class GameRecord:
             if self.main.LastCharCount >= 65:
                 self.panel.notation.insert(END, '\n')
                 self.main.LastCharCount = 0
-            if self.Moves[j].Ply_nr <> '':
+            if self.Moves[j].Ply_nr != '':
                 self.panel.notation.insert(END, repr(self.Moves[j].Ply_nr).rjust(2) + ".")
             self.main.LastCharCount = self.main.LastCharCount + 3
             if self.Moves[j].WhiteMove:
@@ -410,7 +410,7 @@ class GameRecord:
                     for step in self.Moves[j].WhiteMove.Step:
                         s = s + repr(step).rjust(2) + 'x'
                     s = s[0: len(s)-1] # remove the last 'x'
-                if self.Moves[j].WhiteMove.Comment <> '':
+                if self.Moves[j].WhiteMove.Comment != '':
                     s = s + '{' + self.Moves[j].WhiteMove.Comment  + '} '
                     self.main.LastCharCount = self.main.LastCharCount + len(self.Moves[j].WhiteMove.Comment) + 3
 
@@ -424,7 +424,7 @@ class GameRecord:
                 self.panel.notation.insert(END, ' ')
                 self.main.LastCharCount = self.main.LastCharCount + len(s) + 1
 
-                if self.Moves[j].WhiteMove.Variant <> '':
+                if self.Moves[j].WhiteMove.Variant != '':
                     self.panel.notation.insert(END, '(')
                     self.main.LastCharCount = self.main.LastCharCount + 1
                     self.main.LeadingTag = self.main.LeadingTag + str(self.HalfPlyDisplayPointer).zfill(3) + "_"
@@ -446,7 +446,7 @@ class GameRecord:
                     for step in self.Moves[j].BlackMove.Step:
                         s = s + repr(step).rjust(2) + 'x'
                     s = s[0: len(s)-1] # remove the last 'x'
-                if self.Moves[j].BlackMove.Comment <> '':
+                if self.Moves[j].BlackMove.Comment != '':
                     s = s + '{' + self.Moves[j].BlackMove.Comment  + '} '
                     self.main.LastCharCount = self.main.LastCharCount + len(self.Moves[j].BlackMove.Comment) + 3
 
@@ -457,7 +457,7 @@ class GameRecord:
                 self.panel.notation.insert(END, ' ')
                 self.main.LastCharCount = self.main.LastCharCount + len(s) + 1
 
-                if self.Moves[j].BlackMove.Variant <> '':
+                if self.Moves[j].BlackMove.Variant != '':
                     self.panel.notation.insert(END, '(')
                     self.main.LastCharCount = self.main.LastCharCount + 1
                     self.main.LeadingTag = self.main.LeadingTag + str(self.HalfPlyDisplayPointer).zfill(3) + "_"
@@ -647,8 +647,8 @@ class HalfPlyRecord:
 
     def __str__(self):
         s = repr(self.Start).rjust(2) + self.op + repr(self.Stop).rjust(2) + ' ' + str(self.Step) + ' (' + str(self.MoveValue).rjust(6) +')'
-        if self.Comment <> '': s = s + ' {' + self.Comment + '}'
-        if self.Variant <> '':
+        if self.Comment != '': s = s + ' {' + self.Comment + '}'
+        if self.Variant != '':
             s = s + '('
             s = s + str(self.Variant)
             s = s + ' )'
@@ -688,7 +688,7 @@ class PlyRecord:
         return
 
     def __str__(self):
-        if self.Ply_nr <> '': s = repr(self.Ply_nr).rjust(2) + '. '
+        if self.Ply_nr != '': s = repr(self.Ply_nr).rjust(2) + '. '
         else: s = ''
         if self.WhiteMove : s = s + str(self.WhiteMove) + ' '
         if self.BlackMove : s = s + str(self.BlackMove)

@@ -8,8 +8,8 @@
 
 """User Interface for walking though the hash"""
 
-from Tkinter import *
-import tkFont
+from tkinter import *
+import tkinter.font
 from DraughtBoard import *
 from DraughtDataStructures import *
 from DraughtConstants import *
@@ -27,8 +27,8 @@ class DraughtWalkHashPanel:
         self.top.title("Hash View")
         #self.top.option_add("*Font", "TSCu_Paranar 10")
         self.top.option_add("*Font", "Helvetica 10")
-        self.myBoldFont = tkFont.Font(family="helvetica", weight="bold", size=10)
-        self.myFont = tkFont.Font(family="helvetica", size=10)
+        self.myBoldFont = tkinter.font.Font(family="helvetica", weight="bold", size=10)
+        self.myFont = tkinter.font.Font(family="helvetica", size=10)
 
         # key bindings
         self.top.bind("<Escape>", self.esc_proc)

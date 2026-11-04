@@ -8,8 +8,8 @@
 
 """User Interface for Analysing stand"""
 
-from Tkinter import *
-import tkFont
+from tkinter import *
+import tkinter.font
 from DraughtBoard import *
 from DraughtDataStructures import *
 from DraughtEvalDisplay import *
@@ -28,8 +28,8 @@ class DraughtAnalyzePanel:
         self.top.title("Analyze")        
         #self.top.option_add("*Font", "TSCu_Paranar 10")
         self.top.option_add("*Font", "Helvetica 10")
-        self.myBoldFont = tkFont.Font(family="helvetica", weight="bold", size=10)
-        self.myFont = tkFont.Font(family="helvetica", size=10)
+        self.myBoldFont = tkinter.font.Font(family="helvetica", weight="bold", size=10)
+        self.myFont = tkinter.font.Font(family="helvetica", size=10)
         
         # key bindings
         self.top.bind("<Escape>", self.esc_proc)
@@ -102,8 +102,8 @@ class DraughtAnalyzePanel:
         
 if __name__=='__main__':        
     position = DraughtBoard()
-    position.WhiteMan = range(31,51)
-    position.BlackMan = range(1,17)
+    position.WhiteMan = list(range(31,51))
+    position.BlackMan = list(range(1,17))
     s = 'E'
     for i in range(0,58):
         s = s + str(i).rjust(5)

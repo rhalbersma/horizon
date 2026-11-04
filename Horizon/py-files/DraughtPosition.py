@@ -42,10 +42,10 @@ class DraughtPosition:
                "ColorOnMove: " + dc.DCtoString(self.ColorOnMove) + '\n'
     
     def print_bord(color, idx):
-        print "trying to move with ", color, " with ", idx
+        print("trying to move with ", color, " with ", idx)
         for i in range(0, 5):
-            print "...", loc_to_char(color, 1+i*10), "...", loc_to_char(color, 2+i*10), "...", loc_to_char(color, 3+i*10), "...", loc_to_char(color, 4+i*10), "...", loc_to_char(color, 5+i*10)
-            print loc_to_char(color, 6+i*10), "...", loc_to_char(color,7+i*10), "...", loc_to_char(color, 8+i*10), "...", loc_to_char(color, 9+i*10), "...", loc_to_char(color, 10+i*10), "..."
+            print("...", loc_to_char(color, 1+i*10), "...", loc_to_char(color, 2+i*10), "...", loc_to_char(color, 3+i*10), "...", loc_to_char(color, 4+i*10), "...", loc_to_char(color, 5+i*10))
+            print(loc_to_char(color, 6+i*10), "...", loc_to_char(color,7+i*10), "...", loc_to_char(color, 8+i*10), "...", loc_to_char(color, 9+i*10), "...", loc_to_char(color, 10+i*10), "...")
         return
     
     def loc_to_char(color, idx):
@@ -73,7 +73,7 @@ class DraughtPosition:
         if self.BoardIsModified == True:
             pass
             # print "don't store, board is modified"
-        elif self.current_half_ply_counter <> self.stored_half_ply_length(self.Games[self.game_pnt]):
+        elif self.current_half_ply_counter != self.stored_half_ply_length(self.Games[self.game_pnt]):
             pass
             # print "don't store, not at the end", self.current_half_ply_counter , self.stored_half_ply_length(), int(self.current_half_ply_counter/2)
         else:
@@ -114,10 +114,10 @@ class DraughtPosition:
     def build_pdn_string(self, long):
         s = ''
         for i in range(0,len(self.Games)):
-            if long == True:
+            if int == True:
                 s = s + "[White \"a\"][Black \"b\"] "
-            s = s + self.build_game_pdn_string(i, long)
-            if long == True:
+            s = s + self.build_game_pdn_string(i, int)
+            if int == True:
                 s = s + "0-0\n"
         return s
   
@@ -132,7 +132,7 @@ class DraughtPosition:
                 s = s + repr(self.Games[i].Moves[j].White_start).rjust(2)
                 s = s + self.Games[i].Moves[j].White_op
                 s = s + repr(self.Games[i].Moves[j].White_stop).rjust(2) + " "
-                if self.Games[i].Moves[j].Black_start <> '':
+                if self.Games[i].Moves[j].Black_start != '':
                     s = s + repr(self.Games[i].Moves[j].Black_start).rjust(2)
                     s = s + self.Games[i].Moves[j].Black_op
                     s = s + repr(self.Games[i].Moves[j].Black_stop).rjust(2) + " "

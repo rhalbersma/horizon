@@ -6,8 +6,8 @@
 #
 
 
-from Tkinter import *
-import tkFont
+from tkinter import *
+import tkinter.font
 from DraughtDataStructures import *
 from DraughtConstants import *
 dc = DraughtConstants()
@@ -171,7 +171,7 @@ class DraughtBoardView:
         self.board_position.ColorOnMove = position.ColorOnMove
 
         temp = position.WhiteMan + position.WhiteKing + position.BlackKing + position.BlackMan
-        Empty = range(1,51)
+        Empty = list(range(1,51))
         for item in temp:
             Empty.remove(item)
         for i in position.WhiteMan:
@@ -420,7 +420,7 @@ class BigDraughtBoardView:
         self.board_position.ColorOnMove = position.ColorOnMove
 
         temp = position.WhiteMan + position.WhiteKing + position.BlackKing + position.BlackMan
-        Empty = range(1,51)
+        Empty = list(range(1,51))
         for item in temp:
             Empty.remove(item)
         for i in position.WhiteMan:

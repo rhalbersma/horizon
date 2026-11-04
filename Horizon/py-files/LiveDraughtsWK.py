@@ -6,7 +6,7 @@
 #
 
 
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from zlib import *
 import gzip
 from DraughtDataStructures import *
@@ -28,7 +28,7 @@ class LiveMenuProc():
 
   def analyse_line(self, line):
     cp = 1
-    while line[cp] <> '"':
+    while line[cp] != '"':
       cp += 1
     return line[1:cp], line[cp+1:-3]
 
@@ -44,11 +44,11 @@ class LiveMenuProc():
     local_pdn =   self.live.local + self.live.round + '/' + str(index) + '.pdn'
     local_chart = self.live.local + self.live.round + '/' + str(index) + '.png'
     try:
-      print "open url", url_file
+      print("open url", url_file)
 
-      response = urllib2.urlopen(url_file)
+      response = urllib.request.urlopen(url_file)
     except:
-      print "can't open url", url_file
+      print("can't open url", url_file)
       return False
     partij = response.read()
     f = open(local_file, 'wb')
@@ -84,7 +84,7 @@ class LiveMenuProc():
             stop = int(line[81:83])
             op = line[80]
             color = line[56]
-            print "adding: ", ext_ply_nr, color, start, op, stop
+            print("adding: ", ext_ply_nr, color, start, op, stop)
             if color == 'B': # it was the white move, now black is on move
               move = PlyRecord()
               move.Ply_nr = (ext_ply_nr - 1)/2 + 1
@@ -126,8 +126,8 @@ class LiveMenuProc():
       game.file_name_pdn = local_pdn
       self.main.Games = []
       self.main.Games.append(game)
-      game.BeginPosition.WhiteMan = range(31, 51)
-      game.BeginPosition.BlackMan = range(1, 21)
+      game.BeginPosition.WhiteMan = list(range(31, 51))
+      game.BeginPosition.BlackMan = list(range(1, 21))
       game.HalfPlyPointer = 0
       #self.main.setup.set_begin_position_on_board(game)
       ply_nr = 0
@@ -151,9 +151,9 @@ class LiveMenuProc():
           except:
             #got incomplete last line
             g.close()
-            print "incomplete?"
-            print line
-            print line[78:80], line[80:81], line[81:83]
+            print("incomplete?")
+            print(line)
+            print(line[78:80], line[80:81], line[81:83])
             return False
           if white == True:
             move = PlyRecord()
@@ -228,7 +228,7 @@ class LiveDraughts():
         #url_file = self.url + self.round + '/' + str(i) + '.LDF.gz'
         url_file = self.url + str(i) + '.LDF.gz' # micro match
         try:
-          response = urllib2.urlopen(url_file)
+          response = urllib.request.urlopen(url_file)
         except:
           return result
         partij = response.read()

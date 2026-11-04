@@ -63,7 +63,7 @@ class DraughtMakeGameRecords:
             #print line1[0:-2]
 
             try: FirstName = line1[line1.index(')')+2: line1.index('-') -1]
-            except: print "line1 = ", line1
+            except: print("line1 = ", line1)
             try: SecName = line1[line1.index('-') +2:-2]
             except: err=1
             #print FirstName
@@ -92,8 +92,8 @@ class DraughtMakeGameRecords:
                 cp = self.main.read.GetGame(0, game)
                 if cp == 0:
                     #self.main.read.Games.remove(game)
-                    print "Error in PDN, last char tried = ", self.main.read.lastchrpnt
-                    print self.main.read.s[self.main.read.lastchrpnt-70:self.main.read.lastchrpnt]
+                    print("Error in PDN, last char tried = ", self.main.read.lastchrpnt)
+                    print(self.main.read.s[self.main.read.lastchrpnt-70:self.main.read.lastchrpnt])
 ##                    self.main.read.debug = '*'
 ##                    game = GameRecord(self.main, self.main.panel, self.main.panel)
 ##                    self.main.read.Games.append(game)
@@ -114,16 +114,16 @@ class DraughtMakeGameRecords:
                         PDNfile.close()
                         for i in range(0, game.get_half_ply_length()):
                             pos = game.get_next_board_layout()
-                            if pos <> None: #valid move
+                            if pos != None: #valid move
                                 ofile.write(repr(GameNumber).zfill(4)  + ' ' + repr(FirstValue).rjust(4) + ' ' + \
                                                 repr(SecValue).rjust(4) + ' ' + repr(int(i/2)).rjust(2) + ' ' + \
                                                 game.Result + ' ' +\
                                                 pos + '\n')
                             else:
-                                print "invalid move??"
+                                print("invalid move??")
         file.close()
         ofile.close()
-        print "done"
+        print("done")
         return
 
 
@@ -146,14 +146,14 @@ class DraughtMakeGameRecords:
           cp = self.main.read.GetGame(0, game)
           if cp == 0:
               #self.main.read.Games.remove(game)
-              print "Error in PDN, last char tried = ", self.main.read.lastchrpnt
-              print line
+              print("Error in PDN, last char tried = ", self.main.read.lastchrpnt)
+              print(line)
               return
           else:
             self.UpdateOpening(game)
             counter += 1
             if counter % 500 == 0:
-              print counter, "openings read", len(self.PosList), "entries", self.hit, "hits", self.plies, "plies"
+              print(counter, "openings read", len(self.PosList), "entries", self.hit, "hits", self.plies, "plies")
 
       self.MakePosDict()
       return

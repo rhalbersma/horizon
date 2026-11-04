@@ -56,7 +56,7 @@ class DraughtConstants:
                 self.HUMAN_PLAYER   : "Human player",
                 self.REMOTE_PLAYER  : "Remote player" }
 
-        if table.has_key(i):
+        if i in table:
             return table[i]
         else: return "can't convert" + str(i)
 

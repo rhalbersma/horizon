@@ -6,11 +6,10 @@
 #
 
 
-import FileDialog
-from Tkinter import *
+import tkinter.filedialog
+from tkinter import *
 import os
 import copy
-import symbol
 
 
 class ParsePDNfile:
@@ -63,9 +62,9 @@ class ParsePDNfile:
 
     def open_pdn_file(self):
 
-        self.fdlg = FileDialog.LoadFileDialog(self.root, title="Choose A PDN File")
+        self.fdlg = tkinter.filedialog.LoadFileDialog(self.root, title="Choose A PDN File")
         self.fname = self.fdlg.go(pattern="*.pdn", dir_or_file=os.curdir + '\\pdn files') # opt args: dir_or_file=os.curdir, pattern="*", default="", key=None)
-        print self.fname
+        print(self.fname)
         self.chr_pnt=0
         self.entire_file=None
         self.file_open_flag = True
@@ -142,7 +141,7 @@ class ParsePDNfile:
                     return True
                 else: return False
             else:
-                print "found illegal keyword:", keyword
+                print("found illegal keyword:", keyword)
                 return False
         return True
 
@@ -211,7 +210,7 @@ class ParsePDNfile:
     def final_state(self):
         # local variables
         if not self.file_open_flag:
-            print "flag!"
+            print("flag!")
             return []
         self.previous_status = []
         status = 'idle'
@@ -534,9 +533,9 @@ class ParsePDNfile:
                 break
         # end while
         if c != None:
-            print "last status = ", self.previous_status[-20:], "last char = |", c , "| chr_pnt = ", self.chr_pnt
-            print "last part: ", self.entire_file[self.chr_pnt-40:self.chr_pnt]
-            print "ord(c) = ", ord(c)
+            print("last status = ", self.previous_status[-20:], "last char = |", c , "| chr_pnt = ", self.chr_pnt)
+            print("last part: ", self.entire_file[self.chr_pnt-40:self.chr_pnt])
+            print("ord(c) = ", ord(c))
             return False
         else:
             pass
@@ -551,4 +550,4 @@ if __name__=='__main__':
     test=ParsePDNfile()
     test.get_pdn_file(True)
     test.f.close()
-    print test.bord.Games[0].Moves[0]
+    print(test.bord.Games[0].Moves[0])

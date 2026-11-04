@@ -11,7 +11,7 @@ from DraughtConstants import *
 dc = DraughtConstants()
 from DraughtDataStructures import *
 from time import *
-from Tkinter import *
+from tkinter import *
 import os
 import fnmatch
 import datetime
@@ -51,8 +51,8 @@ class Draught158Games:
 
   def _set_position(self):
     game = GameRecord(self.main, self.main.panel, self.main.panel, None)
-    game.BeginPosition.BlackMan = range(1, 21)
-    game.BeginPosition.WhiteMan = range(31, 51)
+    game.BeginPosition.BlackMan = list(range(1, 21))
+    game.BeginPosition.WhiteMan = list(range(31, 51))
     game.BeginPosition.ColorOnMove = dc.WHITE_ON_MOVE
     game.set_begin_position()
     ml = self.main.play.mg.valid_move(game)                                     # get all valid moves
@@ -134,7 +134,7 @@ class Draught158Games:
     f = open('/home/feike/Horizon/pdn-files/158/' + file_name, 'w')
     f.write(self.main.save.game_to_string(self.main.ActiveGame))
     f.close()
-    print file_name, "saved"
+    print(file_name, "saved")
     # update the parameters
     if self._next_position() == False:
       return

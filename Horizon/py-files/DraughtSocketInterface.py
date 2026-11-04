@@ -14,7 +14,7 @@ from DraughtEngineInterface import *
 from DraughtRemotePlayer import *
 import os
 import errno
-import Tkinter
+import tkinter
 
 # Algumas constantes usadas
 
@@ -50,7 +50,7 @@ class TkSelectMixIn:
         return
 
     def input_add(self, source, mode, callback):
-        print "input_add"
+        print("input_add")
         # Insere um objeto na pilha e retorna um identificador
         #
         # source  o objeto, normalmente um socket
@@ -64,7 +64,7 @@ class TkSelectMixIn:
         if mode not in (0, 1, 2):
             raise ValueError("invalid mode")
 
-        tag = _tags.next()
+        tag = next(_tags)
         _modes[mode][tag] = _Wrapper(source, callback)
 
         return tag
@@ -84,7 +84,7 @@ class TkSelectMixIn:
         # que estejam com problemas
 
         for mode in _modes:
-            for tag, source in mode.iteritems():
+            for tag, source in mode.items():
                 try:
                     _select([source], [source], [source], 0)
                 except: # encontramos o vilao
@@ -104,8 +104,8 @@ class TkSelectMixIn:
 
             # tentamos o select ate nao ocorrer erros
             try:
-                if len(_read.values()) + len( _write.values()) + len(_error.values()) > 0:
-                    ready = _select(_read.values(), _write.values(), _error.values(), 0)
+                if len(list(_read.values())) + len( list(_write.values())) + len(list(_error.values())) > 0:
+                    ready = _select(list(_read.values()), list(_write.values()), list(_error.values()), 0)
                 else:
                     ready = [], [], []
                 break
@@ -115,15 +115,15 @@ class TkSelectMixIn:
             except TypeError:
                 # Algo que nao era um socket foi passado...
                 self._check()
-            except socket.error, reason:
+            except socket.error as reason:
                 # Algum dos sockets esta com problemas... 
                 code, msg = reason.args
                 if code == errno.EINTR:
-                    print os.strerror(errno.EINTR)
+                    print(os.strerror(errno.EINTR))
                     # consulte man 2 select
                     return
                 if code == errno.EBADF:
-                    print os.strerror(errno.EBADF)
+                    print(os.strerror(errno.EBADF))
                     # Socket com problemas... 
                     self._check()
                 else:
@@ -137,7 +137,7 @@ class TkSelectMixIn:
                     source.close()
                     source.callback('X')    # tell them we are closed
 
-                    for addr, (conn, tag) in self.clients.iteritems():
+                    for addr, (conn, tag) in self.clients.items():
                         if source is conn:
                             self.input_remove(tag)
                             del self.clients[addr]

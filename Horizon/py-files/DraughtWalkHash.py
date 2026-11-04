@@ -210,7 +210,7 @@ class DraughtWalkHash:
 # best move index (2)
 
     def receive_hash_node(self, msg):
-        if msg[1] <> 'x':
+        if msg[1] != 'x':
             new_hash_node,  next_start = self.get_hash_node(msg,  0)
             self.Positions.append(new_hash_node)
             self.show_pos(-1,  self.Positions,  self.panel)
