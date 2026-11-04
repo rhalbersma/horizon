@@ -470,7 +470,7 @@ class DraughtPlay:
             self.remote.level1.conn.close()
         if self.main.EngineStarted == True:
             self.engine.send_close_engine()
-            os.waitpid(self.main.EngineID, 0)
+            os.waitpid(self.EngineID, 0)
             try:
                 print("python -- close socket")
                 self.engine.conn.close()

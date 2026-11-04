@@ -423,12 +423,12 @@ class DraughtPanel:
         if self.phase.get()==dc.PLAY_MODE:
             self.main.exit_clicked()
         else:
-            self.main.play.engine.send_close_engine()
-            self.root.quit()
+            self.main.play.end_proc()
         return
 
     def stop_engine(self):
-        self.main.play.engine.send_close_engine()
+        if self.main.EngineStarted == True:
+            self.main.play.engine.send_close_engine()
         return
 
 

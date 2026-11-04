@@ -435,7 +435,8 @@ class DraughtPanel:
         return
 
     def stop_engine(self):
-        self.main.play.engine.send_close_engine()
+        if self.main.EngineStarted == True:
+            self.main.play.engine.send_close_engine()
         return
 
 

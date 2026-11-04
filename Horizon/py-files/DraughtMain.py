@@ -381,9 +381,9 @@ class DraughtMain:
         self.setup.setup_board()
         return
 
-    def new_game_clicked():
+    def new_game_clicked(self):
         self.Games = []
-        game = GameRecord()
+        game = GameRecord(self, self.panel, self.panel)
         self.Games.append(game)
         self.ActiveGame = game
         self.ActiveGameNumber = 0
